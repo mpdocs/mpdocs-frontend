@@ -2,7 +2,7 @@
 
 
 import React from 'react';
-import {useFieldArray, useForm} from "react-hook-form";
+import {SubmitHandler, useFieldArray, useForm} from "react-hook-form";
 
 type ReportsData = {
     [key: string]: string[];
@@ -11,12 +11,23 @@ type ReportsData = {
 
 let exampleData: ReportsData = {
     "1.	Информация о повышении квалификации в период 2021-22 уч. год": ["Форма повышения квалификации", "Страна. организация", "Наименование курса (дисциплины)", "№ диплома (свидетельства), дата выдачи", "Количество часов"],
-    "1.	Информация о повышении квалификации в период 2021-22 уч. ": ["Форма повышения квалификации", "Страна. организация", "Наименование курса (дисциплины)", "№ диплома (свидетельства), дата выдачи", "Количество часов"],
+    // "1.	Информация о повышении квалификации в период 2021-22 уч. ": ["Форма повышения квалификации", "Страна. организация", "Наименование курса (дисциплины)", "№ диплома (свидетельства), дата выдачи", "Количество часов"],
 }
 
 type FormValues = {
-    fieldArray: { name: string }[];
+    fieldArray: Group[];
 };
+
+interface Field {
+    id: string;
+    value: string;
+}
+
+interface Group {
+    id: string;
+    fields: Field[];
+}
+
 const ReportsForm = () => {
     const {
         register,
@@ -24,13 +35,11 @@ const ReportsForm = () => {
         control,
         watch,
         reset,
-        formState,
         setError,
-        formState: {isSubmitSuccessful, errors},
-
+        formState: {isSubmitSuccessful, errors, isValid},
     } = useForm<FormValues>();
 
-    const {fields, append, prepend, remove, swap, move, insert} = useFieldArray({
+    const {fields} = useFieldArray({
         control,
         name: "fieldArray",
     });
@@ -41,37 +50,50 @@ const ReportsForm = () => {
             ...watchFieldArray[index]
         };
     });
+    const sendReports: SubmitHandler<FormValues> = (data) => {
+        try {
+            console.log(data)
+        } catch (err) {
+            console.error(err)
+        } finally {
+            reset()
+        }
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit(sendReports)}>
             {Object.keys(exampleData).map((key, fieldsetIndex) => (
-                <fieldset
-                    className="flex flex-col gap-2 border-2 border-white p-4"
-                    key={key}>
-                    <legend>{key}</legend>
-                    {exampleData[key].map((label, index) => (
-                        <label
-                            className="flex flex-col gap-2"
-                            htmlFor={`${fieldsetIndex}-${index}`} key={`${fieldsetIndex}-${index}`}>
-                            <span>{label}</span>
-                            <textarea
-                                id={`${fieldsetIndex}-${index}`}
-                                {...register(`fieldArray.${fieldsetIndex * 100 + index}` as const, {
-                                    required: true,
-                                })}
-                            />
-                        </label>
-                    ))}
-                </fieldset>
-            ))}
+                    <fieldset
+                        className="flex flex-col gap-2 border-2 border-white p-4"
+                        key={key}>
+                        <legend>{key}</legend>
+                        {exampleData[key].map((label, index) => (
+                            <label
+                                className="flex flex-col gap-2"
+                                htmlFor={`${fieldsetIndex}-${index}`} key={`${fieldsetIndex}-${index}`}>
+                                <span>{label}</span>
+                                <textarea
+                                    className="text-black"
+                                    id={`${fieldsetIndex}-${index}`}
+                                    {...register(`fieldArray.${fieldsetIndex}.fields.${index}.value` as const, {
+                                        required: 'Обязательное поле',
+                                    })}
+                                />
+                            </label>
+                        ))}
+                    </fieldset>
+                )
+            )}
             <button
                 type={"submit"}
-                disabled={!errors.root}
+                disabled={!isValid}
                 className="text-black bg-[#C2C2C2] rounded-3xl px-6 py-2 disabled:bg-amber-700"
             >
                 Отправить
             </button>
         </form>
-    );
+    )
+        ;
 };
 
 export default ReportsForm;
