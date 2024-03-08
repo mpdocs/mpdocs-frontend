@@ -1,3 +1,6 @@
+'use client'
+
+
 import React from 'react';
 import {useFieldArray, useForm} from "react-hook-form";
 
@@ -50,10 +53,11 @@ const ReportsForm = () => {
                             className="flex flex-col gap-2"
                             htmlFor={`${fieldsetIndex}-${index}`} key={`${fieldsetIndex}-${index}`}>
                             <span>{label}</span>
-                            <textarea id={`${fieldsetIndex}-${index}`}
-                                      {...register(`fieldArray.${fieldsetIndex * 100 + index}` as const, {
-                                          required: true,
-                                      })}
+                            <textarea
+                                id={`${fieldsetIndex}-${index}`}
+                                {...register(`fieldArray.${fieldsetIndex * 100 + index}` as const, {
+                                    required: true,
+                                })}
                             />
                         </label>
                     ))}

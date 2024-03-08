@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import ReportsForm from "@/app/components/ReportsForm";
 
