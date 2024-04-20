@@ -58,7 +58,7 @@ const AuthForm: React.FC = () => {
                     type="text"
 
                     {...register("username", {
-                        required: true,
+                        required: "обязаьедб",
                     })}
                     placeholder={"Введите ваш логин"}
                 />
