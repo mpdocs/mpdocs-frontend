@@ -1,6 +1,5 @@
 'use client'
 
-
 import React, {useState} from "react";
 import {useRouter} from "next/navigation";
 import {useAppDispatch} from "@/utils/hooks/useAppDispatch";
@@ -19,10 +18,8 @@ const AuthForm: React.FC = () => {
     const {
         register,
         handleSubmit,
-        reset,
-        formState,
         setError,
-        formState: {isSubmitSuccessful, errors},
+        formState: { errors},
 
     } = useForm<FormInputs>();
     const dispatch = useAppDispatch();
@@ -56,9 +53,8 @@ const AuthForm: React.FC = () => {
                 <input
                     className="text-black border-2 border-black rounded-lg p-2 w-full"
                     type="text"
-
                     {...register("username", {
-                        required: "обязаьедб",
+                        required: "Обязательное поле",
                     })}
                     placeholder={"Введите ваш логин"}
                 />

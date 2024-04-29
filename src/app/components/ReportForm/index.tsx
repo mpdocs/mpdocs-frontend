@@ -1,20 +1,9 @@
 'use client'
 
-
 import React from 'react';
 import {SubmitHandler, useFieldArray, useForm} from "react-hook-form";
+import Label from "@/app/components/Label";
 
-type ReportsData = {
-    [key: string]: string[];
-};
-
-
-let qualificationImprovementExample: ReportsData = {
-    "1.	Информация о повышении квалификации в период 2021-22 уч. год": ["Форма повышения квалификации", "Страна", "Организация", "Наименование курса (дисциплины)", "№ диплома (свидетельства)", "Дата выдачи", "Количество часов"],
-}
-let methodicalWorksExample: ReportsData = {
-    "2.1	Перечень изданных учебно-методических пособий и указаний за 2021-22уч.год  ": ["№ п/п", "Наименование", "ФИО авторов", "Вид: (учебник, пособие, методические указания и т.д)", "Выходные данные", "Объём в п.л. или стр."],
-}
 
 type FormValues = {
     qualification_improvement: qualification_improvement;
@@ -41,14 +30,14 @@ interface methodicalWork {
 }
 
 
-const ReportsForm = () => {
+const ReportForm = () => {
     const {
         register,
         handleSubmit,
         control,
         reset,
         watch,
-        formState: {isSubmitSuccessful, errors, isValid},
+        formState: {isValid},
     } = useForm<FormValues>(
         {
             defaultValues: {
@@ -89,7 +78,7 @@ const ReportsForm = () => {
     };
 
 
-    const sendReports: SubmitHandler<FormValues> = (data) => {
+    const sendReport: SubmitHandler<FormValues> = (data) => {
         console.log()
         try {
             console.log(data)
@@ -101,165 +90,163 @@ const ReportsForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit(sendReports)}>
+        <form onSubmit={handleSubmit(sendReport)}>
             <fieldset
                 className="flex flex-col gap-2 border-2 border-white p-4">
-                <legend>{Object.keys(qualificationImprovementExample)[0]}</legend>
-                <label
-                    className="flex flex-col gap-2"
-                    htmlFor={`qualification_improvement.form`} key={`qualification_improvement.form`}>
-                    <span>{Object.values(qualificationImprovementExample)[0][0]}</span>
-                    <textarea
+                <legend>1. Информация о повышении квалификации в период 2021-22 уч. год</legend>
+                <Label htmlFor={`qualification_improvement.form`}>
+                    <span>Форма повышения квалификации</span>
+                    <input
                         className="text-black"
+                        type="text"
                         id={`qualification_improvement.form`}
                         {...register(`qualification_improvement.form` as const, {
                             required: 'Обязательное поле',
                         })}
                     />
-                </label>
-                <label
-                    className="flex flex-col gap-2"
-                    htmlFor={`qualification_improvement.country`} key={`qualification_improvement.country`}>
-                    <span>{Object.values(qualificationImprovementExample)[0][1]}</span>
-                    <textarea
+                </Label>
+                <Label
+                    htmlFor={`qualification_improvement.country`}>
+                    <span>Страна</span>
+                    <input
+                        type="text"
                         className="text-black"
                         id={`qualification_improvement.country`}
                         {...register(`qualification_improvement.country` as const, {
                             required: 'Обязательное поле',
                         })}
                     />
-                </label>
-                <label
-                    className="flex flex-col gap-2"
+                </Label>
+                <Label
                     htmlFor={`qualification_improvement.organization`} key={`qualification_improvement.organization`}>
-                    <span>{Object.values(qualificationImprovementExample)[0][2]}</span>
-                    <textarea
+                    <span>Организация</span>
+                    <input
+                        type="text"
                         className="text-black"
                         id={`qualification_improvement.organization`}
                         {...register(`qualification_improvement.organization` as const, {
                             required: 'Обязательное поле',
                         })}
                     />
-                </label>
-                <label
-                    className="flex flex-col gap-2"
-                    htmlFor={`qualification_improvement.course_name`} key={`qualification_improvement.course_name`}>
-                    <span>{Object.values(qualificationImprovementExample)[0][3]}</span>
-                    <textarea
+                </Label>
+                <Label
+                    htmlFor={`qualification_improvement.course_name`}>
+                    <span>Наименование курса (дисциплины)</span>
+                    <input
+                        type="text"
                         className="text-black"
                         id={`qualification_improvement.course_name`}
                         {...register(`qualification_improvement.course_name` as const, {
                             required: 'Обязательное поле',
                         })}
                     />
-                </label>
-                <label
-                    className="flex flex-col gap-2"
-                    htmlFor={`qualification_improvement.diploma_number`}
-                    key={`qualification_improvement.diploma_number`}>
-                    <span>{Object.values(qualificationImprovementExample)[0][4]}</span>
-                    <textarea
+                </Label>
+                <Label
+                    htmlFor={`qualification_improvement.diploma_number`}>
+                    <span>№ диплома (свидетельства)</span>
+                    <input
+                        type="text"
                         className="text-black"
                         id={`qualification_improvement.diploma_number`}
                         {...register(`qualification_improvement.diploma_number` as const, {
                             required: 'Обязательное поле',
                         })}
                     />
-                </label>
-                <label
-                    className="flex flex-col gap-2"
-                    htmlFor={`qualification_improvement.diploma_date`} key={`qualification_improvement.diploma_date`}>
-                    <span>{Object.values(qualificationImprovementExample)[0][5]}</span>
-                    <textarea
+                </Label>
+                <Label
+                    htmlFor={`qualification_improvement.diploma_date`}>
+                    <span>Дата выдачи</span>
+                    <input
+                        type="text"
                         className="text-black"
                         id={`qualification_improvement.diploma_date`}
                         {...register(`qualification_improvement.diploma_date` as const, {
                             required: 'Обязательное поле',
                         })}
                     />
-                </label>
-                <label
-                    className="flex flex-col gap-2"
-                    htmlFor={`qualification_improvement.hours_count`} key={`qualification_improvement.hours_count`}>
-                    <span>{Object.values(qualificationImprovementExample)[0][6]}</span>
-                    <textarea
+                </Label>
+                <Label
+                    htmlFor={`qualification_improvement.hours_count`}>
+                    <span>Количество часов</span>
+                    <input
+                        type="text"
                         className="text-black"
                         id={`qualification_improvement.hours_count`}
                         {...register(`qualification_improvement.hours_count` as const, {
                             required: 'Обязательное поле',
                         })}
                     />
-                </label>
+                </Label>
             </fieldset>
 
             <fieldset
                 className="flex flex-col gap-2 border-2 border-white p-4">
-                <legend>{Object.keys(methodicalWorksExample)[0]}</legend>
+                <legend>2.1 Перечень изданных учебно-методических пособий и указаний за 2021-22уч.год</legend>
                 {controlledMethodicalWorksFields.map((field, index) => (
                     <div key={index}>
-                        <label
-                            className="flex flex-col gap-2"
-                            htmlFor={`methodical_works.${index}.name`} key={`methodical_works.${index}.name`}>
-                            <span>{Object.values(methodicalWorksExample)[0][1]}</span>
-                            <textarea
+                        <Label
+                            htmlFor={`methodical_works.${index}.name`}>
+                            <span>Наименование</span>
+                            <input
+                                type="text"
                                 className="text-black"
                                 id={`methodical_works.${index}.name`}
                                 {...register(`methodical_works.${index}.name` as const, {
                                     required: 'Обязательное поле',
                                 })}
                             />
-                        </label>
-                        <label
-                            className="flex flex-col gap-2"
-                            htmlFor={`methodical_works.${index}.authors`} key={`methodical_works.${index}.authors`}>
-                            <span>{Object.values(methodicalWorksExample)[0][2]}</span>
-                            <textarea
+                        </Label>
+                        <Label
+                            htmlFor={`methodical_works.${index}.authors`}>
+                            <span>ФИО авторов</span>
+                            <input
+                                type="text"
                                 className="text-black"
                                 id={`methodical_works.${index}.authors`}
                                 {...register(`methodical_works.${index}.authors` as const, {
                                     required: 'Обязательное поле',
                                 })}
                             />
-                        </label>
-                        <label
-                            className="flex flex-col gap-2"
-                            htmlFor={`methodical_works.${index}.type`} key={`methodical_works.${index}.type`}>
-                            <span>{Object.values(methodicalWorksExample)[0][3]}</span>
-                            <textarea
+                        </Label>
+                        <Label
+                            htmlFor={`methodical_works.${index}.type`}>
+                            <span>Вид: (учебник, пособие, методические указания и т.д)</span>
+                            <input
+                                type="text"
                                 className="text-black"
                                 id={`methodical_works.${index}.type`}
                                 {...register(`methodical_works.${index}.type` as const, {
                                     required: 'Обязательное поле',
                                 })}
                             />
-                        </label>
-                        <label
-                            className="flex flex-col gap-2"
-                            htmlFor={`methodical_works.${index}.publisher`} key={`methodical_works.${index}.publisher`}>
-                            <span>{Object.values(methodicalWorksExample)[0][4]}</span>
-                            <textarea
+                        </Label>
+                        <Label
+                            htmlFor={`methodical_works.${index}.publisher`}>
+                            <span>Выходные данные</span>
+                            <input
+                                type="text"
                                 className="text-black"
                                 id={`methodical_works.${index}.publisher`}
                                 {...register(`methodical_works.${index}.publisher` as const, {
                                     required: 'Обязательное поле',
                                 })}
                             />
-                        </label>
-                        <label
-                            className="flex flex-col gap-2"
-                            htmlFor={`methodical_works.${index}.pages_count`} key={`methodical_works.${index}.pages_count`}>
-                            <span>{Object.values(methodicalWorksExample)[0][5]}</span>
-                            <textarea
+                        </Label>
+                        <Label
+                            htmlFor={`methodical_works.${index}.pages_count`}>
+                            <span>Объём в п.л. или стр.</span>
+                            <input
+                                type="text"
                                 className="text-black"
                                 id={`methodical_works.${index}.pages_count`}
                                 {...register(`methodical_works.${index}.pages_count` as const, {
                                     required: 'Обязательное поле',
                                 })}
                             />
-                        </label>
+                        </Label>
                     </div>
                 ))}
-                <button onClick={appendEducationalAndMethodicalManualsFields}> Добавить</button>
+                <button onClick={appendEducationalAndMethodicalManualsFields}>Добавить</button>
             </fieldset>
 
             <button
@@ -274,4 +261,4 @@ const ReportsForm = () => {
         ;
 };
 
-export default ReportsForm;
+export default ReportForm;

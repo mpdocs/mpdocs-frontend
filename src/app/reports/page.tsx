@@ -1,11 +1,11 @@
 import React from 'react';
-import ReportsForm from "@/app/components/ReportsForm";
+import ReportForm from "../components/ReportForm";
 
 const Page = () => {
     return (
         <div>
             <section className="w-full h-screen flex justify-center items-center">
-                <ReportsForm/>
+                <ReportForm/>
             </section>
         </div>
     );
