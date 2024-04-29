@@ -3,11 +3,10 @@ import ReportForm from "../components/ReportForm";
 
 const Page = () => {
     return (
-        <div>
-            <section className="w-full h-screen flex justify-center items-center">
+            // fixme: какой-то конченый стиль, который не выдерживает добавление контента
+            <section className="flex flex-col justify-center items-center">
                 <ReportForm/>
             </section>
-        </div>
     );
 };
 
