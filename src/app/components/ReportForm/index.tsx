@@ -90,7 +90,7 @@ const ReportForm = () => {
     <form onSubmit={handleSubmit(sendReport)}>
       <fieldset className="flex flex-col gap-2 border-2 border-white p-4">
         <legend>
-          1. Информация о повышении квалификации в период 2021-22 уч. год
+          1. Информация о повышении квалификации в период 2023-2024  уч. год
         </legend>
         <Label htmlFor={`qualification_improvement.form`}>
           <span>Форма повышения квалификации</span>
@@ -177,7 +177,7 @@ const ReportForm = () => {
       <fieldset className="flex flex-col gap-2 border-2 border-white p-4">
         <legend>
           2.1 Перечень изданных учебно-методических пособий и указаний за
-          2021-22уч.год
+          2023-2024 уч.год
         </legend>
         {controlledMethodicalWorksFields.map((field, index) => (
           <div key={index}>
