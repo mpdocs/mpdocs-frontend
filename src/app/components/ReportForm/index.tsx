@@ -3,29 +3,7 @@
 import React from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import Label from "@/app/components/Label";
-
-type FormValues = {
-  qualification_improvement: qualificationImprovement;
-  methodical_works: methodicalWork[];
-};
-
-interface qualificationImprovement {
-  form: string;
-  country: string;
-  organization: string;
-  course_name: string;
-  diploma_number: string;
-  diploma_date: string;
-  hours_count: number;
-}
-
-interface methodicalWork {
-  name: string;
-  authors: string;
-  type: string;
-  publisher: string;
-  pages_count: string;
-}
+import type {MethodicalWork, ReportFormValues} from "@/app/components/ReportForm/types";
 
 const ReportForm = () => {
   const {
@@ -35,7 +13,7 @@ const ReportForm = () => {
     reset,
     watch,
     formState: { isValid },
-  } = useForm<FormValues>({
+  } = useForm<ReportFormValues>({
     defaultValues: {
       methodical_works: [
         {
@@ -65,7 +43,7 @@ const ReportForm = () => {
   );
 
   const appendEducationalAndMethodicalManualsFields = () => {
-    const newFields: methodicalWork = {
+    const newFields: MethodicalWork = {
       name: "",
       authors: "",
       type: "",
@@ -79,7 +57,7 @@ const ReportForm = () => {
     methodicalWorkArray.remove(index);
   }
 
-  const sendReport: SubmitHandler<FormValues> = (data) => {
+  const sendReport: SubmitHandler<ReportFormValues> = (data) => {
     console.log();
     try {
       console.log(data);
