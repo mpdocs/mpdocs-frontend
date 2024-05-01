@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prettify": "prettier --write './src/**/*.{js,json,jsx,ts,tsx,css}'",
     "lint-staged": "^15.2.2"
   },
@@ -16,6 +16,7 @@
     "react": "^18",
     "react-dom": "^18"
   },
+
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
@@ -41,7 +42,7 @@
   "lint-staged": {
     "./src/**/*.{js,json,jsx,ts,tsx,css}": [
       "prettify",
-      "lint --fix"
+      "eslint --fix"
     ]
   }
 }
