@@ -3,7 +3,8 @@ import AuthForm from "@/app/components/AuthForm";
 
 const Page = () => {
     return (
-        <section className="w-full h-screen flex justify-center items-center">
+        // fixme: тут был какой-то конченый стиль, который не выдерживает добавление контента
+        <section className="">
             <AuthForm/>
         </section>
     );

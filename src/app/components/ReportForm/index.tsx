@@ -75,6 +75,10 @@ const ReportForm = () => {
     methodicalWorkArray.append(newFields);
   };
 
+  const onRemoveEducationalAndMethodicalManualsField = (index: number) => {
+    methodicalWorkArray.remove(index);
+  }
+
   const sendReport: SubmitHandler<FormValues> = (data) => {
     console.log();
     try {
@@ -87,10 +91,10 @@ const ReportForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(sendReport)}>
+    <form onSubmit={handleSubmit(sendReport)} className="lg:w-5/12 md:w-8/12 sm:w-12/12">
       <fieldset className="flex flex-col gap-2 border-2 border-white p-4">
         <legend>
-          1. Информация о повышении квалификации в период 2021-22 уч. год
+          1. Информация о повышении квалификации в период 2023-2024  уч. год
         </legend>
         <Label htmlFor={`qualification_improvement.form`}>
           <span>Форма повышения квалификации</span>
@@ -177,10 +181,20 @@ const ReportForm = () => {
       <fieldset className="flex flex-col gap-2 border-2 border-white p-4">
         <legend>
           2.1 Перечень изданных учебно-методических пособий и указаний за
-          2021-22уч.год
+          2023-2024 уч.год
         </legend>
+        <div className="flex flex-col gap-6">
         {controlledMethodicalWorksFields.map((field, index) => (
-          <div key={index}>
+          <fieldset key={index} className="flex flex-col gap-2 border-2 border-white p-4">
+            <legend>№ {index + 1}</legend>
+            <button type={"button"}
+                    onClick={() => onRemoveEducationalAndMethodicalManualsField(index)}
+                    className="w-max rounded-md bg-red-500 px-3 py-2 text-sm font-semibold
+        text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2
+        focus-visible:outline-offset-2 focus-visible:outline-red-600"
+            >
+              Удалить
+            </button>
             <Label htmlFor={`methodical_works.${index}.name`}>
               <span>Наименование</span>
               <input
@@ -236,9 +250,12 @@ const ReportForm = () => {
                 })}
               />
             </Label>
-          </div>
+          </fieldset>
         ))}
-        <button onClick={appendEducationalAndMethodicalManualsFields}>
+        </div>
+        <button onClick={appendEducationalAndMethodicalManualsFields} className="rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold
+        text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2
+        focus-visible:outline-offset-2 focus-visible:outline-blue-600">
           Добавить
         </button>
       </fieldset>
@@ -246,7 +263,9 @@ const ReportForm = () => {
       <button
         type={"submit"}
         disabled={!isValid}
-        className="text-black bg-[#C2C2C2] rounded-3xl px-6 py-2 disabled:bg-amber-700"
+        className="rounded-md bg-blue-400 px-3 py-2 text-sm font-semibold
+        text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2
+        focus-visible:outline-offset-2 focus-visible:outline-blue-600"
       >
         Отправить
       </button>
