@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { login } from "@/utils/auth/thunk";
 import { useForm } from "react-hook-form";
+import { Button, Input } from "antd";
 
 interface FormInputs {
   username: string;
@@ -47,8 +48,7 @@ const AuthForm: React.FC = () => {
     >
       <label className="flex-col gap-1 w-full">
         <span className="text-black text-lg block font-bold">Логин:</span>
-        <input
-          className="text-black border-2 border-black rounded-lg p-2 w-full"
+        <Input
           type="text"
           {...register("username", {
             required: "Обязательное поле",
@@ -58,8 +58,7 @@ const AuthForm: React.FC = () => {
       </label>
       <label className="flex-col gap-1 w-full">
         <span className="text-black text-lg block font-bold">Пароль:</span>
-        <input
-          className="text-black border-2 border-black rounded-lg p-2 w-full"
+        <Input
           type="password"
           {...register("password", {
             required: true,
@@ -68,9 +67,9 @@ const AuthForm: React.FC = () => {
         />
       </label>
       {errors.root && <p className="text-red-600">{errors.root.message}</p>}
-      <button className="text-black bg-[#C2C2C2] rounded-3xl px-6 py-2" type={"submit"} disabled={isLoading}>
+      <Button htmlType="submit" disabled={isLoading}>
         {isLoading ? "Загрузка..." : "Войти"}
-      </button>
+      </Button>
     </form>
   );
 };
