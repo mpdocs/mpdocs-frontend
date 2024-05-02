@@ -72,7 +72,7 @@ const ReportForm = () => {
 
   return (
     <form onSubmit={handleSubmit(sendReport)} className="lg:w-5/12 md:w-8/12 sm:w-12/12">
-      <fieldset className="flex flex-col gap-2 border-2 border-white p-4">
+      <fieldset className="flex flex-col gap-2 border-2 rounded-2xl border-white p-4">
         <legend>
           1. Информация о повышении квалификации в период 2023-2024  уч. год
         </legend>
@@ -151,14 +151,14 @@ const ReportForm = () => {
         </Label>
       </fieldset>
 
-      <fieldset className="flex flex-col gap-2 border-2 border-white p-4">
+      <fieldset className="flex flex-col gap-2 border-2 rounded-2xl border-white p-4">
         <legend>
           2.1 Перечень изданных учебно-методических пособий и указаний за
           2023-2024 уч.год
         </legend>
         <div className="flex flex-col gap-6">
         {controlledMethodicalWorksFields.map((field, index) => (
-          <fieldset key={index} className="flex flex-col gap-2 border-2 border-white p-4">
+          <fieldset key={index} className="flex flex-col gap-2 border-2 rounded-2xl border-white p-4">
             <legend>№ {index + 1}</legend>
             <Button
                 className="flex items-center justify-between"
