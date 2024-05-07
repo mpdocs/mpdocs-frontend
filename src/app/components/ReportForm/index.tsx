@@ -4,8 +4,9 @@ import React from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import Label from "@/app/components/Label";
 import type { MethodicalWork, ReportFormValues } from "@/app/components/ReportForm/types";
-import { Button, Input } from "antd";
+import { Button, Form, Input } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
+
 const ReportForm = () => {
   const {
     register,
@@ -68,7 +69,7 @@ const ReportForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(sendReport)} className="lg:w-5/12 md:w-8/12 sm:w-12/12">
+    <Form onFinish={handleSubmit(sendReport)} className="lg:w-5/12 md:w-8/12 sm:w-12/12">
       <fieldset className="flex flex-col gap-2 border-2 rounded-2xl border-white p-4">
         <legend>1. Информация о повышении квалификации в период 2023-2024 уч. год</legend>
         <Label htmlFor={`qualification_improvement.form`}>
@@ -222,7 +223,7 @@ const ReportForm = () => {
       <Button type="primary" htmlType="submit" className="mt-2 m-auto w-full" disabled={!isValid}>
         Отправить
       </Button>
-    </form>
+    </Form>
   );
 };
 
