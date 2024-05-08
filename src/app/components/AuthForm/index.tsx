@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { login } from "@/utils/auth/thunk";
 import { useForm } from "react-hook-form";
-import { Button, Input } from "antd";
+import { Alert, Button, Input } from "antd";
+import styles from "./styles.module.scss";
 
 interface FormInputs {
   username: string;
@@ -42,12 +43,9 @@ const AuthForm: React.FC = () => {
       });
   };
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="bg-white rounded-xl p-5 flex flex-col justify-center items-center gap-6"
-    >
-      <label className="flex-col gap-1 w-full">
-        <span className="text-black text-lg block font-bold">Логин:</span>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+      <label className={styles.label}>
+        <span className={styles.span}>Логин:</span>
         <Input
           type="text"
           {...register("username", {
@@ -56,8 +54,8 @@ const AuthForm: React.FC = () => {
           placeholder={"Введите ваш логин"}
         />
       </label>
-      <label className="flex-col gap-1 w-full">
-        <span className="text-black text-lg block font-bold">Пароль:</span>
+      <label className={styles.label}>
+        <span className={styles.span}>Пароль:</span>
         <Input
           type="password"
           {...register("password", {
@@ -66,8 +64,8 @@ const AuthForm: React.FC = () => {
           placeholder={"Введите ваш пароль"}
         />
       </label>
-      {errors.root && <p className="text-red-600">{errors.root.message}</p>}
-      <Button htmlType="submit" disabled={isLoading}>
+      {errors.root && <Alert message={errors.root.message} showIcon />}
+      <Button type="primary" htmlType="submit" disabled={isLoading}>
         {isLoading ? "Загрузка..." : "Войти"}
       </Button>
     </form>
