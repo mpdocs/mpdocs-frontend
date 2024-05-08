@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Home() {
   return (
-    <section className="flex flex-col justify-center items-center">
+    <section className="section">
       <ReportForm />
     </section>
   );
