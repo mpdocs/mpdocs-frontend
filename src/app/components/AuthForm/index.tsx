@@ -4,9 +4,11 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { login } from "@/utils/auth/thunk";
-import { useForm } from "react-hook-form";
-import { Alert, Button, Input } from "antd";
+import { Controller, useForm } from "react-hook-form";
+import { Alert, Button, Form, Input } from "antd";
 import styles from "./styles.module.scss";
+import FormItem from "antd/es/form/FormItem";
+import Label from "@/app/components/Label";
 
 interface FormInputs {
   username: string;
@@ -18,9 +20,9 @@ const AuthForm: React.FC = () => {
 
   const router = useRouter();
   const {
-    register,
     handleSubmit,
     setError,
+    control,
     formState: { errors },
   } = useForm<FormInputs>();
   const dispatch = useAppDispatch();
@@ -43,32 +45,34 @@ const AuthForm: React.FC = () => {
       });
   };
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <label className={styles.label}>
-        <span className={styles.span}>Логин:</span>
-        <Input
-          type="text"
-          {...register("username", {
-            required: "Обязательное поле",
-          })}
-          placeholder={"Введите ваш логин"}
+    <Form onFinish={handleSubmit(onSubmit)} className={styles.form}>
+      <FormItem className={styles.label}>
+        <Label htmlFor="username">Логин:</Label>
+        <Controller
+          name="username"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input onChange={onChange} value={value} onBlur={onBlur} />
+          )}
         />
-      </label>
-      <label className={styles.label}>
-        <span className={styles.span}>Пароль:</span>
-        <Input
-          type="password"
-          {...register("password", {
-            required: true,
-          })}
-          placeholder={"Введите ваш пароль"}
+      </FormItem>
+      <FormItem className={styles.label}>
+        <Label htmlFor="password">Пароль:</Label>
+        <Controller
+          name="password"
+          defaultValue=""
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input onChange={onChange} value={value} onBlur={onBlur} type="password" />
+          )}
         />
-      </label>
+      </FormItem>
       {errors.root && <Alert message={errors.root.message} showIcon />}
       <Button type="primary" htmlType="submit" disabled={isLoading}>
         {isLoading ? "Загрузка..." : "Войти"}
       </Button>
-    </form>
+    </Form>
   );
 };
 
