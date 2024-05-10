@@ -19,7 +19,6 @@
 .nav_header {
   background-color: white;
   border-bottom: 0;
-  padding: 0 4px 0 24px;
 }
 
 .logo {
@@ -48,6 +47,7 @@
 
 .navbar_menu .ant-menu-item {
   padding-bottom: 0;
+  padding-right: 0;
 }
 
 .navbar_menu .leftMenu {
@@ -72,6 +72,10 @@
   padding: 0;
 }
 
+.ant-menu-item {
+  padding-left: 0;
+}
+
 .ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
 .ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
   display: inline-block;
@@ -92,9 +96,13 @@
 }
 
 @media (max-width: 767px) {
+  .nav_header {
+    padding-right: 24px;
+  }
+
   .menuButton {
     display: block;
-    margin-right: 10px;
+    margin-right: 0;
   }
 
   .leftMenu,
