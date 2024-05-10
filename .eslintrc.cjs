@@ -17,14 +17,12 @@ module.exports = {
       ],
       "parserOptions": {
         "sourceType": "script",
-
       },
     },
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-
   },
   "plugins": [
     "react",
