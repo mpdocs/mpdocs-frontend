@@ -10,14 +10,14 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <Providers>
-        <body className={inter.className}>
-          <header>
+      <body className={inter.className}>
+        <main>
+          <Providers>
             <Navbar></Navbar>
-          </header>
-          {children}
-        </body>
-      </Providers>
+            {children}
+          </Providers>
+        </main>
+      </body>
     </html>
   );
 }
