@@ -1,7 +1,7 @@
-import React from "react";
-import { Menu } from "antd";
+import React, { useEffect } from "react";
+import { Menu, MenuProps } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
-import { logout } from "@/utils/auth/thunk";
+import { logout, refreshUserData } from "@/utils/auth/thunk";
 import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/utils/store";
@@ -12,6 +12,9 @@ const RightMenu: React.FC<MenuProps> = ({ mode }) => {
   const onLogout = () => {
     dispatch(logout());
   };
+  useEffect(() => {
+    dispatch(refreshUserData());
+  }, []);
   return (
     <Menu mode={mode}>
       <Menu.SubMenu

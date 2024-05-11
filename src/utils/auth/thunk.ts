@@ -77,3 +77,10 @@ export const login = createAsyncThunk<UserDetail, LoginData>(
     return (await dispatch(fetchUserData())).payload as UserDetail;
   },
 );
+
+export const refreshUserData = createAsyncThunk<UserDetail>(
+  "auth/refreshUserData",
+  async (payload, { dispatch }): Promise<UserDetail> => {
+    return (await dispatch(fetchUserData())).payload as UserDetail;
+  },
+);
