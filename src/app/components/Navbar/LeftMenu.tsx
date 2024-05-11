@@ -1,8 +1,8 @@
 import React from "react";
-import { Menu } from "antd";
+import { Menu, MenuProps } from "antd";
 import Link from "next/link";
 
-const LeftMenu = ({ mode }) => {
+const LeftMenu: React.FC<MenuProps> = ({ mode }) => {
   return (
     <Menu mode={mode}>
       <Menu.Item key="explore">

@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/utils/store";
 
-const RightMenu = ({ mode }) => {
+const RightMenu: React.FC<MenuProps> = ({ mode }) => {
   const dispatch = useAppDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
   const onLogout = () => {
