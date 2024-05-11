@@ -21,10 +21,7 @@ const UserDataFetcher = () => {
       dispatch(fetchUserData());
     } else if (!token) {
       dispatch(logout());
-
-      if (pathname !== "/register") {
-        router.push("/auth");
-      }
+      router.push("/auth");
     }
   }, [user.id, dispatch, router, pathname]);
 
