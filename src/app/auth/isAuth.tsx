@@ -1,18 +1,19 @@
 "use client";
 import React, { useEffect } from "react";
 import { redirect } from "next/navigation";
-import { getAccessToken } from "@/utils/api/tokens";
+import { useSelector } from "react-redux";
+import { RootState } from "@/utils/store";
 
 export default function isAuth<P extends Record<string, unknown>>(Component: React.ComponentType<P>): React.FC<P> {
   return function IsAuth(props) {
-    const token = getAccessToken();
+    const user = useSelector((state: RootState) => state.auth.user);
     useEffect(() => {
-      if (!token) {
+      if (!user.id) {
         return redirect("/auth");
       }
     }, []);
 
-    if (!token) {
+    if (!user.id) {
       return null;
     }
 
