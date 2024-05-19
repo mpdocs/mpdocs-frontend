@@ -6,7 +6,7 @@ import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { login } from "@/utils/auth/thunk";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, Button, Form, Input } from "antd";
-import styles from "./styles.module.scss";
+import styles from "./index.module.scss";
 import FormItem from "antd/es/form/FormItem";
 import Label from "@/app/components/Label";
 import { getAccessToken } from "@/utils/api/tokens";
@@ -21,8 +21,7 @@ const AuthForm: React.FC = () => {
 
   const router = useRouter();
   useEffect(() => {
-    const token = getAccessToken();
-    if (token) {
+    if (getAccessToken()) {
       router.push("/");
     }
   }, []);
