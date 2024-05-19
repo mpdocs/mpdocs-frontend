@@ -6,7 +6,6 @@ import Label from "@/app/components/Label";
 import type { MethodicalWork, ReportFormValues } from "@/app/components/ReportForm/types";
 import { Button, Form, Input } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import styles from "./styles.module.scss";
 
 const ReportForm = () => {
   const {
@@ -71,7 +70,7 @@ const ReportForm = () => {
 
   return (
     <Form onFinish={handleSubmit(sendReport)} className="lg:w-5/12 md:w-8/12 sm:w-12/12">
-      <fieldset className={styles.fieldset}>
+      <fieldset>
         <legend>1. Информация о повышении квалификации в период 2023-2024 уч. год</legend>
         <Label htmlFor={`qualification_improvement.form`}>
           <span>Форма повышения квалификации</span>
@@ -145,17 +144,16 @@ const ReportForm = () => {
         </Label>
       </fieldset>
 
-      <fieldset className={styles.fieldset}>
+      <fieldset>
         <legend>2.1 Перечень изданных учебно-методических пособий и указаний за 2023-2024 уч.год</legend>
-        <div className={styles.fieldsets_wrapper}>
+        <div>
           {controlledMethodicalWorksFields.map((field, index) => (
-            <fieldset key={index} className={styles.fieldset}>
+            <fieldset key={index}>
               <legend>№ {index + 1}</legend>
               <Button
                 onClick={() => {
                   onRemoveEducationalAndMethodicalManualsField(index);
                 }}
-                className={styles.btn_remove}
                 type="primary"
                 htmlType="button"
                 danger
@@ -221,7 +219,7 @@ const ReportForm = () => {
         </Button>
       </fieldset>
 
-      <Button type="primary" htmlType="submit" className={styles.btn_add} disabled={!isValid}>
+      <Button type="primary" htmlType="submit" disabled={!isValid}>
         Отправить
       </Button>
     </Form>

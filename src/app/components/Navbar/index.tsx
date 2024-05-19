@@ -4,7 +4,7 @@ import { Button, Drawer } from "antd";
 import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { MenuOutlined } from "@ant-design/icons";
-import styles from "./styles.module.scss";
+import styles from "./index.module.scss";
 import Link from "next/link";
 import { Header } from "antd/lib/layout/layout";
 
