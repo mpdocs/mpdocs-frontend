@@ -5,11 +5,11 @@ import Link from "next/link";
 const LeftMenu: React.FC<MenuProps> = ({ mode }) => {
   return (
     <Menu mode={mode}>
-      <Menu.Item key="explore">
-        <Link href="/">Home</Link>
+      <Menu.Item key="create-reports">
+        <Link href="/reports">Создать отчет</Link>
       </Menu.Item>
-      <Menu.Item key="features">
-        <Link href="/reports">Reports</Link>
+      <Menu.Item key="watch-reports">
+        <Link href="/reports">Смотреть отчеты</Link>
       </Menu.Item>
     </Menu>
   );

@@ -9,15 +9,7 @@ import { Content } from "antd/es/layout/layout";
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <Provider store={store}>
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#00b96b",
-            borderRadius: 2,
-            colorBgContainer: "#f6ffed",
-          },
-        }}
-      >
+      <ConfigProvider>
         <Content>{children}</Content>
       </ConfigProvider>
     </Provider>

@@ -1,5 +1,3 @@
-/* Navbar */
-
 .navbar {
   padding-bottom: 1px;
   border-bottom: solid 1px #e8e8e8;
@@ -16,14 +14,16 @@
   margin: 0 auto;
 }
 
-.nav_header {
+.nav__header {
+  width: 100%;
   background-color: white;
   border-bottom: 0;
 }
 
 .logo {
-  width: 200px;
+  width: fit-content;
   float: left;
+  margin-right: 1rem;
 }
 
 .logo a {
@@ -32,34 +32,36 @@
   text-transform: capitalize;
 }
 
-.navbar_menu {
-  width: calc(100% - 300px);
-  float: left;
+.navbar__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.navbar_menu .ant-layout-header {
+.navbar__menu .ant-layout-header {
   padding: 0 20px;
 }
 
-.navbar_menu .ant-menu-horizontal {
+.navbar__menu .ant-menu-horizontal {
   border-bottom: 0;
 }
 
-.navbar_menu .ant-menu-item {
+.navbar__menu .ant-menu-item {
   padding-bottom: 0;
   padding-right: 0;
 }
 
-.navbar_menu .leftMenu {
+.navbar__menu .leftMenu {
   float: left;
 }
 
-.navbar_menu .rightMenu {
+.navbar__menu .rightMenu {
   float: right;
 }
 
 .menuButton {
   float: right;
+  margin-left: auto;
   height: 32px;
   padding: 6px;
   margin-top: 14px;
@@ -96,8 +98,10 @@
 }
 
 @media (max-width: 767px) {
-  .nav_header {
+  .nav__header {
     padding-right: 24px;
+    display: flex;
+    justify-content: space-between;
   }
 
   .menuButton {
@@ -122,5 +126,3 @@
     display: inline-block;
   }
 }
-
-/* Navbar End */
