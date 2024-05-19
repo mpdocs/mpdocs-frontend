@@ -27,7 +27,7 @@ function createAxiosResponseInterceptor() {
 
       return await api
         .post("/auth/token/refresh/", {
-          refresh_token: getRefreshToken(),
+          refresh: getRefreshToken(),
         })
         .then(async (response) => {
           setAccessToken(response.data.access);
