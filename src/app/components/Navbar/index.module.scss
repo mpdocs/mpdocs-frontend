@@ -1,17 +1,20 @@
 .navbar {
-  padding-bottom: 1px;
-  border-bottom: solid 1px #e8e8e8;
   background-color: white;
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.12),
   0 6px 16px -11px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   margin-bottom: 20px;
-  z-index: 99990;
+  z-index: 100;
 }
 
 .brand_font {
   margin: 0 auto;
+  display: block;
+
+  &_mobile {
+    display: none;
+  }
 }
 
 .nav__header {
@@ -52,17 +55,19 @@
 }
 
 .navbar__menu .leftMenu {
+  min-width: 30rem;
   float: left;
 }
 
 .navbar__menu .rightMenu {
+  min-width: 10rem;
   float: right;
+  z-index: 99999;
 }
 
 .menuButton {
   float: right;
   margin-left: auto;
-  height: 32px;
   padding: 6px;
   margin-top: 14px;
   display: none;
@@ -98,6 +103,12 @@
 }
 
 @media (max-width: 767px) {
+  .brand_font {
+    &_mobile {
+      margin: 0 auto;
+      display: block;
+    }
+  }
   .nav__header {
     padding-right: 24px;
     display: flex;
