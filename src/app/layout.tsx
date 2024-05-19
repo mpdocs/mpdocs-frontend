@@ -12,13 +12,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={inter.className}>
-        <main>
-          <Providers>
-            <UserDataFetcher />
-            <Navbar />
-            {children}
-          </Providers>
-        </main>
+        <Providers>
+          <UserDataFetcher />
+          <Navbar />
+          {children}
+        </Providers>
       </body>
     </html>
   );
