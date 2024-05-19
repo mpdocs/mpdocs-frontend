@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { login } from "@/utils/auth/thunk";
@@ -9,6 +9,7 @@ import { Alert, Button, Form, Input } from "antd";
 import styles from "./styles.module.scss";
 import FormItem from "antd/es/form/FormItem";
 import Label from "@/app/components/Label";
+import { getAccessToken } from "@/utils/api/tokens";
 
 interface FormInputs {
   username: string;
@@ -19,6 +20,13 @@ const AuthForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const router = useRouter();
+  useEffect(() => {
+    const token = getAccessToken();
+    if (token) {
+      router.push("/");
+    }
+  }, []);
+
   const {
     handleSubmit,
     setError,
