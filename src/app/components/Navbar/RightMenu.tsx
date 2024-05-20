@@ -1,49 +1,32 @@
 import React, { useEffect } from "react";
 import { Menu, MenuProps } from "antd";
-import { UserOutlined, LogoutOutlined, AppstoreOutlined } from "@ant-design/icons";
-import { logout, refreshUserData } from "@/utils/auth/thunk";
+import { UserOutlined } from "@ant-design/icons";
+import { refreshUserData } from "@/utils/auth/thunk";
 import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/utils/store";
-import { getAccessToken } from "@/utils/api/tokens";
+import Link from "next/link";
+import { IMenu } from "@/utils/types";
 
-type MenuItem = Required<MenuProps>["items"][number];
-
-const RightMenu: React.FC<MenuProps> = ({ mode }) => {
+const RightMenu: React.FC<IMenu> = ({ current, menu }) => {
   const dispatch = useAppDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
-  const onLogout = () => {
-    dispatch(logout());
-  };
+
   useEffect(() => {
     dispatch(refreshUserData());
   }, []);
-  const items: MenuItem[] = [
+  const items: MenuProps["items"] = [
     {
-      key: "SubMenu",
+      key: "profile",
       label: (
         <>
-          {getAccessToken() ? <AppstoreOutlined /> : ""}
-          <span>{`${user.first_name} ${user.last_name} `}</span>
+          <Link href="/profile">{`${user.first_name} ${user.last_name} `}</Link>
+          <UserOutlined />
         </>
       ),
-      children: [
-        {
-          key: "profile",
-          icon: <UserOutlined />,
-          label: "Профиль",
-        },
-        {
-          key: "logout",
-          danger: true,
-          icon: <LogoutOutlined />,
-          onClick: onLogout,
-          label: "Выйти",
-        },
-      ],
     },
   ];
-  return <Menu mode={mode} items={items} />;
+  return <Menu onClick={menu.onClick} selectedKeys={[current]} mode={menu.mode} items={items} />;
 };
 
 export default RightMenu;

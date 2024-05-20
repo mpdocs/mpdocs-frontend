@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { Menu, MenuProps } from "antd";
+import React from "react";
+import { Menu } from "antd";
 import Link from "next/link";
 import styles from "@/app/components/Navbar/index.module.scss";
+import { IMenu } from "@/utils/types";
 
 const items = [
   {
     key: "home",
     label: (
       <Link href={"/"}>
-        <h3 className={styles.brand_font}>Отчеты</h3>
+        <span className={styles.header__logo}>Отчеты</span>
       </Link>
     ),
   },
@@ -22,13 +23,8 @@ const items = [
   },
 ];
 
-const LeftMenu: React.FC<MenuProps> = ({ mode }) => {
-  const [current, setCurrent] = useState("home");
-
-  const onClick: MenuProps["onClick"] = (e) => {
-    setCurrent(e.key);
-  };
-  return <Menu onClick={onClick} selectedKeys={[current]} mode={mode} items={items} />;
+const LeftMenu: React.FC<IMenu> = ({ current, menu }) => {
+  return <Menu onClick={menu.onClick} selectedKeys={[current]} mode={menu.mode} items={items} />;
 };
 
 export default LeftMenu;
