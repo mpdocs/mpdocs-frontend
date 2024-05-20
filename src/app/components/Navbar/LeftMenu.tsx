@@ -14,7 +14,7 @@ const items = [
     ),
   },
   {
-    key: "report_form",
+    key: "create_report",
     label: <Link href="/reports">Создать отчет</Link>,
   },
   {
