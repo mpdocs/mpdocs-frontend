@@ -26,7 +26,7 @@ const Navbar = () => {
     <Header className={styles.header}>
       <nav className={styles.header__nav}>
         <Link href={"/"}>
-          <h3 className={styles.header__logo_mobile}>Отчеты</h3>
+          <span className={styles.header__logo_mobile}>Отчеты</span>
         </Link>
         <div className={styles.menu}>
           <div className={styles.menu_left}>

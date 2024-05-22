@@ -15,11 +15,11 @@ const items = [
   },
   {
     key: "create_report",
-    label: <Link href="/reports">Создать отчет</Link>,
+    label: <Link href="/reports">Заполнить</Link>,
   },
   {
     key: "report_list",
-    label: <Link href="/reports_list">Смотреть отчеты</Link>,
+    label: <Link href="/reports_list">Смотреть</Link>,
   },
 ];
 
