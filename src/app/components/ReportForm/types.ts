@@ -99,19 +99,19 @@ export interface ActivitiesParticipation {
 }
 
 export interface ReportFormValues {
-  qualification_improvement: QualificationImprovement;
+  // qualification_improvement: QualificationImprovement;
   methodical_works: MethodicalWork[];
   monographs: Monograph[];
-  articles: Article[];
-  conferences: Conference[];
-  patents: Patent[];
-  software_products: SoftwareProduct[];
-  exhibitions: Exhibition[];
-  contests: Contest[];
-  scientific_publications: ScientificPublication[];
-  student_works: StudentWork[];
-  olympiads: Olympiad[];
-  organizational_participations: ActivitiesParticipation[];
-  professional_orientation_participations: ActivitiesParticipation[];
-  educational_participations: ActivitiesParticipation[];
+  // articles: Article[]; // надо разделить на 4 типа
+  // conferences: Conference[];
+  // patents: Patent[];
+  // software_products: SoftwareProduct[];
+  // exhibitions: Exhibition[];
+  // contests: Contest[];
+  // scientific_publications: ScientificPublication[];
+  // student_works: StudentWork[];
+  // olympiads: Olympiad[];
+  // organizational_participations: ActivitiesParticipation[];
+  // professional_orientation_participations: ActivitiesParticipation[];
+  // educational_participations: ActivitiesParticipation[];
 }
