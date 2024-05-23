@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/utils/store";
 import Link from "next/link";
 import { IMenu } from "@/utils/types";
+import styles from "./index.module.scss";
 
 const RightMenu: React.FC<IMenu> = ({ current, menu }) => {
   const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ const RightMenu: React.FC<IMenu> = ({ current, menu }) => {
       key: "profile",
       label: (
         <>
-          <Link href="/profile">{`${user.first_name} ${user.last_name} `}</Link>
+          <Link href="/profile" className={styles.menu__username}>{`${user.first_name} ${user.last_name}`}</Link>
           <UserOutlined />
         </>
       ),
