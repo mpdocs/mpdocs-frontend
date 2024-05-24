@@ -115,3 +115,7 @@ export interface ReportFormValues {
   // professional_orientation_participations: ActivitiesParticipation[];
   // educational_participations: ActivitiesParticipation[];
 }
+
+export type ElementOf<T> = T extends Array<infer U> ? U : never;
+
+export type FieldsetType = ElementOf<ReportFormValues[keyof ReportFormValues]>;
