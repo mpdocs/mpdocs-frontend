@@ -1,73 +1,72 @@
-.navbar {
-  padding-bottom: 1px;
-  border-bottom: solid 1px #e8e8e8;
+.header {
   background-color: white;
   box-shadow: 0 3px 6px -2px rgba(0, 0, 0, 0.12),
   0 6px 16px -11px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   margin-bottom: 20px;
-  z-index: 99990;
+  z-index: 100;
+
+  &__logo {
+    color: #1677ff;
+    margin: 0 auto;
+    display: block;
+    font-weight: bold;
+
+    &_mobile {
+      display: none;
+    }
+  }
+
+  &__nav {
+    width: 100%;
+    background-color: white;
+    border-bottom: 0;
+  }
 }
 
-.brand_font {
-  margin: 0 auto;
-}
-
-.nav__header {
-  width: 100%;
-  background-color: white;
-  border-bottom: 0;
-}
-
-.logo {
-  width: fit-content;
-  float: left;
-  margin-right: 1rem;
-}
-
-.logo a {
-  display: inline-block;
-  font-size: 20px;
-  text-transform: capitalize;
-}
-
-.navbar__menu {
+.menu {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  &_left {
+    width: 100%;
+    min-width: 30rem;
+  }
+
+  &_right {
+    min-width: 10rem;
+    float: right;
+    z-index: 99999;
+  }
+
+  &__button {
+    float: right;
+    margin-left: auto;
+    padding: 6px;
+    margin-top: 14px;
+    display: none;
+    background: none;
+    margin-right: 10px;
+  }
+
+  &__username {
+    margin-right: 10px;
+  }
 }
 
-.navbar__menu .ant-layout-header {
+.menu .ant-layout-header {
   padding: 0 20px;
 }
 
-.navbar__menu .ant-menu-horizontal {
+.menu .ant-menu-horizontal {
   border-bottom: 0;
 }
 
-.navbar__menu .ant-menu-item {
+.menu .ant-menu-item {
   padding-bottom: 0;
   padding-right: 0;
-}
-
-.navbar__menu .leftMenu {
-  float: left;
-}
-
-.navbar__menu .rightMenu {
-  float: right;
-}
-
-.menuButton {
-  float: right;
-  margin-left: auto;
-  height: 32px;
-  padding: 6px;
-  margin-top: 14px;
-  display: none;
-  background: none;
-  margin-right: 10px;
 }
 
 .ant-drawer-body {
@@ -92,37 +91,38 @@
   border-bottom-color: transparent;
 }
 
-.username {
-  display: none;
-  margin-left: 8px;
-}
 
 @media (max-width: 767px) {
-  .nav__header {
-    padding-right: 24px;
-    display: flex;
-    justify-content: space-between;
+  .header {
+    &__logo {
+      color: black;
+      font-weight: normal;
+
+      &_mobile {
+        margin: 0 auto;
+        display: block;
+      }
+    }
+
+    &__nav {
+      padding-right: 24px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .menu {
+    &__button {
+      display: block;
+      margin-right: 0;
+    }
+
+    &_left,
+    &_right {
+      display: none;
+    }
   }
 
-  .menuButton {
-    display: block;
-    margin-right: 0;
-  }
-
-  .leftMenu,
-  .rightMenu {
-    display: none;
-  }
-
-  .logo a {
-    margin-left: -10px;
-  }
-
-  .ant-drawer-title > .brand-font {
+  .ant-drawer-title > .header__logo {
     margin-bottom: 0;
-  }
-
-  .username {
-    display: inline-block;
   }
 }

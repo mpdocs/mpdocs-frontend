@@ -1,49 +1,56 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button, Drawer } from "antd";
+import { Button, Drawer, MenuProps } from "antd";
 import LeftMenu from "./LeftMenu";
 import RightMenu from "./RightMenu";
 import { MenuOutlined } from "@ant-design/icons";
 import styles from "./index.module.scss";
-import Link from "next/link";
 import { Header } from "antd/lib/layout/layout";
+import Link from "next/link";
 
 const Navbar = () => {
-  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState("mail");
   const showDrawer = () => {
-    setVisible(!visible);
+    setOpen(!open);
+  };
+
+  const onClick: MenuProps["onClick"] = (e) => {
+    setCurrent(e.key);
   };
 
   useEffect(() => {
-    setVisible(false);
+    setOpen(false);
   }, []);
-
   return (
-    <Header className={styles.navbar}>
-      <div className={styles.nav__header}>
-        <div className={styles.logo}>
-          <Link href={"/"}>
-            <h3 className={styles.brand_font}>Отчеты</h3>
-          </Link>
-        </div>
-        <div className={styles.navbar__menu}>
-          <div className={styles.leftMenu}>
-            <LeftMenu mode={"horizontal"} />
+    <Header className={styles.header}>
+      <nav className={styles.header__nav}>
+        <Link href={"/"}>
+          <span className={styles.header__logo_mobile}>Отчеты</span>
+        </Link>
+        <div className={styles.menu}>
+          <div className={styles.menu_left}>
+            <LeftMenu menu={{ mode: "horizontal", onClick }} current={current} />
           </div>
-          {/* бургер */}
-          <Button className={styles.menuButton} type="text" onClick={showDrawer}>
+          <Button className={styles.menu__button} type="text" onClick={showDrawer}>
             <MenuOutlined />
           </Button>
-          {/* бокова desctope */}
-          <div className={styles.rightMenu}>
-            <RightMenu mode={"inline"} />
+          <div className={styles.menu_right}>
+            <RightMenu menu={{ mode: "horizontal", onClick }} current={current} />
           </div>
-          <Drawer title={"Отчеты"} placement="right" closable={true} style={{ zIndex: 99999 }} visible={visible}>
-            <LeftMenu mode={"inline"} />
-            <RightMenu mode={"inline"} />
+          <Drawer
+            title={"Меню"}
+            onClose={showDrawer}
+            placement="right"
+            closable={true}
+            style={{ zIndex: 99999 }}
+            open={open}
+          >
+            <RightMenu menu={{ mode: "inline", onClick }} current={current} />
+            <LeftMenu menu={{ mode: "inline", onClick }} current={current} />
           </Drawer>
         </div>
-      </div>
+      </nav>
     </Header>
   );
 };
