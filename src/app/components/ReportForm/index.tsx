@@ -3,7 +3,7 @@
 import React from "react";
 import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import Label from "@/app/components/Label";
-import { ReportFormValues } from "@/app/components/ReportForm/types";
+import { FieldsetType, ReportFormValues } from "@/app/components/ReportForm/types";
 import { Button, Form } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
@@ -63,8 +63,14 @@ const ReportForm = () => {
     };
   });
 
-  const appendFields = (fieldsArray: any, obj: any) => {
-    fieldsArray.append(obj);
+  const appendFields = (fieldsArray: any, fieldset: FieldsetType) => {
+    const updatedFieldset = { ...fieldset };
+    for (const key in updatedFieldset) {
+      if (Object.prototype.hasOwnProperty.call(updatedFieldset, key)) {
+        updatedFieldset[key as keyof FieldsetType] = "";
+      }
+    }
+    fieldsArray.append(updatedFieldset);
   };
 
   const removeFields = (fieldsArray: any, index: number) => {
