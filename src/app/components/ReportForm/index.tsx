@@ -72,9 +72,11 @@ const ReportForm = () => {
   return (
     <Form onFinish={handleSubmit(sendReport)} className="lg:w-5/12 md:w-8/12 sm:w-12/12">
       <fieldset className={styles.fieldset}>
-        <legend>1. Информация о повышении квалификации в период 2023-2024 уч. год</legend>
+        <legend className={styles.fieldset__legend}>
+          1. Информация о повышении квалификации в период 2023-2024 уч. год
+        </legend>
         <Label htmlFor={`qualification_improvement.form`} className={styles.fieldset__label}>
-          <span>Форма повышения квалификации</span>
+          <span className={styles.fieldset__span}>Форма повышения квалификации</span>
           <Input
             type="text"
             className={styles.input}
@@ -86,7 +88,7 @@ const ReportForm = () => {
           />
         </Label>
         <Label htmlFor={`qualification_improvement.country`} className={styles.fieldset__label}>
-          <span>Страна</span>
+          <span className={styles.fieldset__span}>Страна</span>
           <Input
             type="text"
             className={styles.input}
@@ -98,7 +100,7 @@ const ReportForm = () => {
           />
         </Label>
         <Label htmlFor={`qualification_improvement.organization`} className={styles.fieldset__label}>
-          <span>Организация</span>
+          <span className={styles.fieldset__span}>Организация</span>
           <Input
             type="text"
             className={styles.input}
@@ -110,7 +112,7 @@ const ReportForm = () => {
           />
         </Label>
         <Label htmlFor={`qualification_improvement.course_name`} className={styles.fieldset__label}>
-          <span>Наименование курса (дисциплины)</span>
+          <span className={styles.fieldset__span}>Наименование курса (дисциплины)</span>
           <Input
             type="text"
             className={styles.input}
@@ -122,7 +124,7 @@ const ReportForm = () => {
           />
         </Label>
         <Label htmlFor={`qualification_improvement.diploma_number`} className={styles.fieldset__label}>
-          <span>№ диплома (свидетельства)</span>
+          <span className={styles.fieldset__span}>№ диплома (свидетельства)</span>
           <Input
             type="number"
             className={styles.input}
@@ -134,7 +136,7 @@ const ReportForm = () => {
           />
         </Label>
         <Label htmlFor={`qualification_improvement.diploma_date`} className={styles.fieldset__label}>
-          <span>Дата выдачи</span>
+          <span className={styles.fieldset__span}>Дата выдачи</span>
           <Input
             type="text"
             className={styles.input}
@@ -146,7 +148,7 @@ const ReportForm = () => {
           />
         </Label>
         <Label htmlFor={`qualification_improvement.hours_count`} className={styles.fieldset__label}>
-          <span>Количество часов</span>
+          <span className={styles.fieldset__span}>Количество часов</span>
           <Input
             type="number"
             className={styles.input}
@@ -160,25 +162,27 @@ const ReportForm = () => {
       </fieldset>
 
       <fieldset className={styles.fieldset}>
-        <legend>2.1 Перечень изданных учебно-методических пособий и указаний за 2023-2024 уч.год</legend>
+        <legend className={styles.fieldset__legend}>
+          2.1 Перечень изданных учебно-методических пособий и указаний за 2023-2024 уч.год
+        </legend>
         <div>
           {controlledMethodicalWorksFields.map((field, index) => (
             <fieldset key={index} className={styles.fieldset}>
-              <legend>№ {index + 1}</legend>
+              <legend className={styles.fieldset__legend}>№ {index + 1}</legend>
               <Button
                 onClick={() => {
                   onRemoveEducationalAndMethodicalManualsField(index);
                 }}
                 type="primary"
                 htmlType="button"
-                className={styles.delete}
+                className={styles.buttonDelete}
                 danger
               >
                 Удалить
                 <MinusCircleOutlined style={{ fontSize: "22px" }} className="dynamic-delete-button" />
               </Button>
               <Label htmlFor={`methodical_works.${index}.name`} className={styles.fieldset__label}>
-                <span>Наименование</span>
+                <span className={styles.fieldset__span}>Наименование</span>
                 <Input
                   type="text"
                   className={styles.input}
@@ -190,7 +194,7 @@ const ReportForm = () => {
                 />
               </Label>
               <Label htmlFor={`methodical_works.${index}.authors`} className={styles.fieldset__label}>
-                <span>ФИО авторов</span>
+                <span className={styles.fieldset__span}>ФИО авторов</span>
                 <Input
                   type="text"
                   className={styles.input}
@@ -202,7 +206,7 @@ const ReportForm = () => {
                 />
               </Label>
               <Label htmlFor={`methodical_works.${index}.type`} className={styles.fieldset__label}>
-                <span>Вид: (учебник, пособие, методические указания и т.д)</span>
+                <span className={styles.fieldset__span}>Вид: (учебник, пособие, методические указания и т.д)</span>
                 <Input
                   type="text"
                   className={styles.input}
@@ -214,7 +218,7 @@ const ReportForm = () => {
                 />
               </Label>
               <Label htmlFor={`methodical_works.${index}.publisher`} className={styles.fieldset__label}>
-                <span>Выходные данные</span>
+                <span className={styles.fieldset__span}>Выходные данные</span>
                 <Input
                   type="text"
                   className={styles.input}
@@ -226,7 +230,7 @@ const ReportForm = () => {
                 />
               </Label>
               <Label htmlFor={`methodical_works.${index}.pages_count`} className={styles.fieldset__label}>
-                <span>Объём в п.л. или стр.</span>
+                <span className={styles.fieldset__span}>Объём в п.л. или стр.</span>
                 <Input
                   type="number"
                   className={styles.input}
