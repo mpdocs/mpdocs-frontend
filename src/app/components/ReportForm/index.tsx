@@ -169,7 +169,7 @@ const ReportForm = () => {
   });
 
   const appendFields = (fieldsArray: any, fieldsetKey: keyof ReportFormValues) => {
-    fieldsArray.append({ ...defaultValues[fieldsetKey] });
+    fieldsArray.append({ ...defaultValues[fieldsetKey][0] });
   };
 
   const removeFields = (fieldsArray: any, index: number) => {
