@@ -99,23 +99,155 @@ export interface ActivitiesParticipation {
 }
 
 export interface ReportFormValues {
-  // qualification_improvement: QualificationImprovement;
+  qualification_improvement: QualificationImprovement;
   methodical_works: MethodicalWork[];
   monographs: Monograph[];
   // articles: Article[]; // надо разделить на 4 типа
-  // conferences: Conference[];
-  // patents: Patent[];
-  // software_products: SoftwareProduct[];
-  // exhibitions: Exhibition[];
-  // contests: Contest[];
-  // scientific_publications: ScientificPublication[];
-  // student_works: StudentWork[];
-  // olympiads: Olympiad[];
-  // organizational_participations: ActivitiesParticipation[];
-  // professional_orientation_participations: ActivitiesParticipation[];
-  // educational_participations: ActivitiesParticipation[];
+  conferences: Conference[];
+  patents: Patent[];
+  software_products: SoftwareProduct[];
+  exhibitions: Exhibition[];
+  contests: Contest[];
+  scientific_publications: ScientificPublication[];
+  student_works: StudentWork[];
+  olympiads: Olympiad[];
+  organizational_participations: ActivitiesParticipation[];
+  professional_orientation_participations: ActivitiesParticipation[];
+  educational_participations: ActivitiesParticipation[];
 }
 
-export type ElementOf<T> = T extends Array<infer U> ? U : never;
+export type FieldsetFieldsType =
+  | keyof QualificationImprovement
+  | keyof MethodicalWork
+  | keyof Monograph
+  | keyof Conference
+  | keyof Patent
+  | keyof SoftwareProduct
+  | keyof Exhibition
+  | keyof Contest
+  | keyof ScientificPublication
+  | keyof StudentWork
+  | keyof Olympiad
+  | keyof ActivitiesParticipation;
 
-export type FieldsetType = ElementOf<ReportFormValues[keyof ReportFormValues]>;
+export const defaultValues: ReportFormValues = {
+  qualification_improvement: {
+    form: "",
+    country: "",
+    organization: "",
+    course_name: "",
+    diploma_number: "",
+    diploma_date: "",
+    hours_count: 0,
+  },
+  methodical_works: [
+    {
+      name: "",
+      authors: "",
+      type: "",
+      publisher: "",
+      pages_count: "",
+    },
+  ],
+  monographs: [
+    {
+      name: "",
+      authors_with_work: "",
+      publisher: "",
+      pages_count: "",
+    },
+  ],
+  conferences: [
+    {
+      name: "",
+      date: "",
+      place: "",
+      status: "",
+      participation_type: "",
+    },
+  ],
+  patents: [
+    {
+      name: "",
+      authors_fullname: "",
+      number: 0,
+      country: "",
+      patent_owner: "",
+    },
+  ],
+  software_products: [
+    {
+      name: "",
+      authors_fullname: "",
+      registration_place: "",
+      where_used: "",
+    },
+  ],
+  exhibitions: [
+    {
+      name: "",
+      date: "",
+      place: "",
+      participants_fullname: "",
+      exhibition_type: "",
+      exhibit_names: "",
+      result: "",
+    },
+  ],
+  contests: [
+    {
+      names: "",
+      application_names: "",
+      leader_fullnames: "",
+      responsible_executor_fullnames: "",
+    },
+  ],
+  scientific_publications: [
+    {
+      authors_fullname: "",
+      name: "",
+      bibliographic_data: "",
+    },
+  ],
+  student_works: [
+    {
+      contest: "",
+      organizer: "",
+      name: "",
+      authors_fullname: "",
+    },
+  ],
+  olympiads: [
+    {
+      name: "",
+      date: "",
+      place: "",
+      participant_fullname: "",
+      result: "",
+    },
+  ],
+  organizational_participations: [
+    {
+      content: "",
+      participant_degree: "",
+      result: "",
+      notes: "",
+    },
+  ],
+  professional_orientation_participations: [
+    {
+      content: "",
+      participant_degree: "",
+      result: "",
+      notes: "",
+    },
+  ],
+  educational_participations: [
+    {
+      content: "",
+      participant_degree: "",
+      result: "",
+      notes: "",
+    },
+  ],
+};
