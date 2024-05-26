@@ -20,33 +20,30 @@ const RightMenu: React.FC<IMenu> = ({ current, menu }) => {
   useEffect(() => {
     dispatch(refreshUserData());
   }, []);
-  let items: MenuProps["items"];
-  if (user.id) {
-    items = [
-      {
-        key: "profile",
-        label: (
-          <>
-            <Link href="/profile" className={styles.menu__username}>{`${user.first_name} ${user.last_name}`}</Link>
-            <UserOutlined />
-          </>
-        ),
-      },
-    ];
-  } else {
-    items = [
-      {
-        key: "login",
-        label: (
-          <>
-            <Button onClick={moveToAuth} type="primary">
-              Войти
-            </Button>
-          </>
-        ),
-      },
-    ];
-  }
+  const items: MenuProps["items"] = user.id
+    ? [
+        {
+          key: "profile",
+          label: (
+            <>
+              <Link href="/profile" className={styles.menu__username}>{`${user.first_name} ${user.last_name}`}</Link>
+              <UserOutlined />
+            </>
+          ),
+        },
+      ]
+    : [
+        {
+          key: "login",
+          label: (
+            <>
+              <Button onClick={moveToAuth} type="primary">
+                Войти
+              </Button>
+            </>
+          ),
+        },
+      ];
   return (
     <>
       <Menu onClick={menu.onClick} selectedKeys={[current]} mode={menu.mode} items={items} />
