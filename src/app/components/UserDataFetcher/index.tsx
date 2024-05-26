@@ -16,12 +16,10 @@ const UserDataFetcher = () => {
 
   useEffect(() => {
     const token = getAccessToken();
-
     if (token && !user.id) {
       dispatch(fetchUserData());
     } else if (!token) {
       dispatch(logout());
-      router.push("/auth");
     }
   }, [user.id, dispatch, router, pathname]);
 

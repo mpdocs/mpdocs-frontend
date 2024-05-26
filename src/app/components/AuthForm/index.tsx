@@ -9,7 +9,8 @@ import { Alert, Button, Form, Input } from "antd";
 import styles from "./index.module.scss";
 import FormItem from "antd/es/form/FormItem";
 import Label from "@/app/components/Label";
-import { getAccessToken } from "@/utils/api/tokens";
+import { useSelector } from "react-redux";
+import { RootState } from "@/utils/store";
 
 interface FormInputs {
   username: string;
@@ -18,10 +19,10 @@ interface FormInputs {
 
 const AuthForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
   const router = useRouter();
+  const user = useSelector((state: RootState) => state.auth.user);
   useEffect(() => {
-    if (getAccessToken()) {
+    if (user.id) {
       router.push("/");
     }
   }, []);

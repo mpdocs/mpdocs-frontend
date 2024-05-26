@@ -1,39 +1,53 @@
 import React, { useEffect } from "react";
-import { Menu, MenuProps } from "antd";
-import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
-import { logout, refreshUserData } from "@/utils/auth/thunk";
+import { Button, Menu, MenuProps } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { refreshUserData } from "@/utils/auth/thunk";
 import { useAppDispatch } from "@/utils/hooks/useAppDispatch";
 import { useSelector } from "react-redux";
 import { RootState } from "@/utils/store";
+import Link from "next/link";
+import { IMenu } from "@/utils/types";
+import styles from "./index.module.scss";
+import { useRouter } from "next/navigation";
 
-const RightMenu: React.FC<MenuProps> = ({ mode }) => {
+const RightMenu: React.FC<IMenu> = ({ current, menu }) => {
   const dispatch = useAppDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
-  const onLogout = () => {
-    dispatch(logout());
+  const router = useRouter();
+  const moveToAuth = () => {
+    router.push("/auth");
   };
   useEffect(() => {
     dispatch(refreshUserData());
   }, []);
+  const items: MenuProps["items"] = user.id
+    ? [
+        {
+          key: "profile",
+          label: (
+            <>
+              <Link href="/profile" className={styles.menu__username}>{`${user.first_name} ${user.last_name}`}</Link>
+              <UserOutlined />
+            </>
+          ),
+        },
+      ]
+    : [
+        {
+          key: "login",
+          label: (
+            <>
+              <Button onClick={moveToAuth} type="primary">
+                Войти
+              </Button>
+            </>
+          ),
+        },
+      ];
   return (
-    <Menu mode={mode}>
-      <Menu.SubMenu
-        title={
-          <>
-            <span className="username">{`${user.first_name} ${user.last_name}`}</span>
-          </>
-        }
-      >
-        <Menu.Item key="about-us">
-          <UserOutlined />
-          <span>Профиль</span>
-        </Menu.Item>
-        <Menu.Item key="log-out" onClick={onLogout}>
-          <LogoutOutlined />
-          <span>Выйти</span>
-        </Menu.Item>
-      </Menu.SubMenu>
-    </Menu>
+    <>
+      <Menu onClick={menu.onClick} selectedKeys={[current]} mode={menu.mode} items={items} />
+    </>
   );
 };
 
