@@ -1,13 +1,32 @@
 "use client";
 
-import React from "react";
-import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import { FieldArrayWithId, SubmitHandler, useFieldArray, UseFieldArrayReturn, useForm } from "react-hook-form";
 import Label from "@/app/components/Label";
-import { defaultValues, FieldsetFieldsType, ReportFormValues } from "@/app/components/ReportForm/types";
+import {
+  defaultValues,
+  DynamicFieldsetsType,
+  ReportFormArrayKeys,
+  ReportFormNonArrayKeys,
+  ReportFormValues,
+} from "@/app/components/ReportForm/types";
 import { Button, Form } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
 const ReportForm = () => {
+  const [isClient, setIsClient] = useState(false);
+  const [savedData, setSavedData] = useState(defaultValues);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const dataFromStorage = localStorage.getItem("reportFormData");
+      if (dataFromStorage) {
+        setSavedData(JSON.parse(dataFromStorage));
+      }
+      setIsClient(true);
+    }
+  }, []);
+
   const {
     register,
     handleSubmit,
@@ -16,7 +35,7 @@ const ReportForm = () => {
     watch,
     formState: { isValid },
   } = useForm<ReportFormValues>({
-    defaultValues,
+    defaultValues: savedData,
     mode: "onBlur",
   });
 
@@ -73,102 +92,59 @@ const ReportForm = () => {
     name: "educational_participations",
   });
 
-  const watchMethodicalWorks = watch("methodical_works");
-  const watchMonographs = watch("monographs");
-  const watchConferences = watch("conferences");
-  const watchPatents = watch("patents");
-  const watchSoftwareProducts = watch("software_products");
-  const watchExhibitions = watch("exhibitions");
-  const watchContests = watch("contests");
-  const watchScientificPublications = watch("scientific_publications");
-  const watchStudentWorks = watch("student_works");
-  const watchOlympiads = watch("olympiads");
-  const watchOrganizationalParticipations = watch("organizational_participations");
-  const watchProfessionalOrientationParticipations = watch("professional_orientation_participations");
-  const watchEducationalParticipations = watch("educational_participations");
+  const watchAllFields = watch();
 
-  const controlledMethodicalWorksFields = methodicalWorks.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchMethodicalWorks[index],
-    };
-  });
-  const controlledMonographsFields = monographs.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchMonographs[index],
-    };
-  });
-  const controlledConferencesFields = conferences.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchConferences[index],
-    };
-  });
-  const controlledPatentsFields = patents.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchPatents[index],
-    };
-  });
-  const controlledSoftwareProductsFields = softwareProducts.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchSoftwareProducts[index],
-    };
-  });
-  const controlledExhibitionsFields = exhibitions.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchExhibitions[index],
-    };
-  });
-  const controlledContestsFields = contests.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchContests[index],
-    };
-  });
-  const controlledScientificPublicationsFields = scientificPublications.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchScientificPublications[index],
-    };
-  });
-  const controlledStudentWorksFields = studentWorks.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchStudentWorks[index],
-    };
-  });
-  const controlledOlympiadsFields = olympiads.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchOlympiads[index],
-    };
-  });
-  const controlledOrganizationalParticipationsFields = organizationalParticipations.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchOrganizationalParticipations[index],
-    };
-  });
-  const controlledProfessionalOrientationParticipationsFields = professionalOrientationParticipations.fields.map(
-    (field, index) => {
-      return {
-        ...field,
-        ...watchProfessionalOrientationParticipations[index],
-      };
-    },
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem("reportFormData", JSON.stringify(watchAllFields));
+    }
+  }, [watchAllFields, isClient]);
+
+  useEffect(() => {
+    reset(savedData);
+  }, [reset, savedData]);
+
+  const controlledFields = (
+    fields: Array<FieldArrayWithId<ReportFormValues, ReportFormArrayKeys, "id">>,
+    watchFields: DynamicFieldsetsType[],
+  ) => fields.map((field, index: number) => ({ ...field, ...watchFields[index] }));
+
+  const controlledMethodicalWorksFields = controlledFields(
+    methodicalWorks.fields,
+    watchAllFields.methodical_works || [],
   );
-  const controlledEducationalParticipationsFields = educationalParticipations.fields.map((field, index) => {
-    return {
-      ...field,
-      ...watchEducationalParticipations[index],
-    };
-  });
+  const controlledMonographsFields = controlledFields(monographs.fields, watchAllFields.monographs || []);
+  const controlledConferencesFields = controlledFields(conferences.fields, watchAllFields.conferences || []);
+  const controlledPatentsFields = controlledFields(patents.fields, watchAllFields.patents || []);
+  const controlledSoftwareProductsFields = controlledFields(
+    softwareProducts.fields,
+    watchAllFields.software_products || [],
+  );
+  const controlledExhibitionsFields = controlledFields(exhibitions.fields, watchAllFields.exhibitions || []);
+  const controlledContestsFields = controlledFields(contests.fields, watchAllFields.contests || []);
+  const controlledScientificPublicationsFields = controlledFields(
+    scientificPublications.fields,
+    watchAllFields.scientific_publications || [],
+  );
+  const controlledStudentWorksFields = controlledFields(studentWorks.fields, watchAllFields.student_works || []);
+  const controlledOlympiadsFields = controlledFields(olympiads.fields, watchAllFields.olympiads || []);
+  const controlledOrganizationalParticipationsFields = controlledFields(
+    organizationalParticipations.fields,
+    watchAllFields.organizational_participations || [],
+  );
+  const controlledProfessionalOrientationParticipationsFields = controlledFields(
+    professionalOrientationParticipations.fields,
+    watchAllFields.professional_orientation_participations || [],
+  );
+  const controlledEducationalParticipationsFields = controlledFields(
+    educationalParticipations.fields,
+    watchAllFields.educational_participations || [],
+  );
 
-  const appendFields = (fieldsArray: any, fieldsetKey: keyof ReportFormValues) => {
+  const appendFields = (
+    fieldsArray: UseFieldArrayReturn<ReportFormValues, ReportFormArrayKeys, "id">,
+    fieldsetKey: ReportFormArrayKeys,
+  ) => {
     fieldsArray.append({ ...defaultValues[fieldsetKey][0] });
   };
 
@@ -396,12 +372,9 @@ const ReportForm = () => {
                       <span>{value}</span>
                       <input
                         type="text"
-                        {...register(
-                          `${fieldsetKey as keyof ReportFormValues}.${index}.${key as FieldsetFieldsType}` as const,
-                          {
-                            required: "Обязательное поле",
-                          },
-                        )}
+                        {...register(`${fieldsetKey as ReportFormArrayKeys}.${index}.${key}` as const, {
+                          required: "Обязательное поле",
+                        })}
                       />
                     </Label>
                   ))}
@@ -410,7 +383,10 @@ const ReportForm = () => {
             </div>
             <Button
               onClick={() => {
-                appendFields(value.fields, fieldsetKey as keyof ReportFormValues);
+                appendFields(
+                  value.fields as UseFieldArrayReturn<ReportFormValues, ReportFormArrayKeys, "id">,
+                  fieldsetKey as ReportFormArrayKeys,
+                );
               }}
               type="primary"
             >
@@ -426,9 +402,12 @@ const ReportForm = () => {
                   <span>{value}</span>
                   <input
                     type="text"
-                    {...register(`${fieldsetKey as keyof ReportFormValues}.${key as FieldsetFieldsType}` as const, {
-                      required: "Обязательное поле",
-                    })}
+                    {...register(
+                      `${fieldsetKey as ReportFormNonArrayKeys}.${key as keyof ReportFormValues[ReportFormNonArrayKeys]}` as const,
+                      {
+                        required: "Обязательное поле",
+                      },
+                    )}
                   />
                 </Label>
               ))}
