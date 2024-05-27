@@ -116,19 +116,18 @@ export interface ReportFormValues {
   educational_participations: ActivitiesParticipation[];
 }
 
-export type FieldsetFieldsType =
-  | keyof QualificationImprovement
-  | keyof MethodicalWork
-  | keyof Monograph
-  | keyof Conference
-  | keyof Patent
-  | keyof SoftwareProduct
-  | keyof Exhibition
-  | keyof Contest
-  | keyof ScientificPublication
-  | keyof StudentWork
-  | keyof Olympiad
-  | keyof ActivitiesParticipation;
+export type ElementOf<T> = T extends Array<infer U> ? U : never;
+export type DynamicFieldsetsType = ElementOf<ReportFormValues[keyof ReportFormValues]>;
+
+type ArrayKeys<T> = {
+  [K in keyof T]: T[K] extends any[] ? K : never;
+}[keyof T];
+type NonArrayKeys<T> = {
+  [K in keyof T]: T[K] extends any[] ? never : K;
+}[keyof T];
+
+export type ReportFormArrayKeys = ArrayKeys<ReportFormValues>;
+export type ReportFormNonArrayKeys = NonArrayKeys<ReportFormValues>;
 
 export const defaultValues: ReportFormValues = {
   qualification_improvement: {
