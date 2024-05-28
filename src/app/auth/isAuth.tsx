@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/utils/store";
 import { useRouter } from "next/navigation";
 
-export default function isAuth<P extends Record<string, unknown>>(Component: React.ComponentType<P>): React.FC<P> {
+export default function isAuth<P extends object>(Component: React.ComponentType<P>): React.FC<P> {
   return function IsAuth(props) {
     const user = useSelector((state: RootState) => state.auth.user);
     const router = useRouter();
