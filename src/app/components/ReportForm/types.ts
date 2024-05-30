@@ -99,7 +99,7 @@ export interface ActivitiesParticipation {
 }
 
 export interface ReportFormValues {
-  qualification_improvement: QualificationImprovement;
+  qualification_improvement: QualificationImprovement[];
   methodical_works: MethodicalWork[];
   monographs: Monograph[];
   scopus_articles: Article[];
@@ -133,15 +133,17 @@ export type ReportFormArrayKeys = ArrayKeys<ReportFormValues>;
 export type ReportFormNonArrayKeys = NonArrayKeys<ReportFormValues>;
 
 export const defaultValues: ReportFormValues = {
-  qualification_improvement: {
-    form: "",
-    country: "",
-    organization: "",
-    course_name: "",
-    diploma_number: "",
-    diploma_date: "",
-    hours_count: 0,
-  },
+  qualification_improvement: [
+    {
+      form: "",
+      country: "",
+      organization: "",
+      course_name: "",
+      diploma_number: "",
+      diploma_date: "",
+      hours_count: 0,
+    },
+  ],
   methodical_works: [
     {
       name: "",
