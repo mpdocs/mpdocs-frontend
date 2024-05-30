@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { FieldArrayWithId, SubmitHandler, useFieldArray, UseFieldArrayReturn, useForm } from "react-hook-form";
+import {
+  FieldArrayWithId,
+  SubmitHandler,
+  useFieldArray,
+  UseFieldArrayReturn,
+  useForm,
+  FieldError,
+} from "react-hook-form";
 import Label from "@/app/components/Label";
 import {
   defaultValues,
@@ -10,7 +17,7 @@ import {
   ReportFormNonArrayKeys,
   ReportFormValues,
 } from "@/app/components/ReportForm/types";
-import { Button, Form } from "antd";
+import { Alert, Button, Form } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 
 const ReportForm = () => {
@@ -33,7 +40,7 @@ const ReportForm = () => {
     control,
     reset,
     watch,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm<ReportFormValues>({
     defaultValues: savedData,
     mode: "onBlur",
@@ -150,6 +157,10 @@ const ReportForm = () => {
 
   const removeFields = (fieldsArray: any, index: number) => {
     fieldsArray.remove(index);
+  };
+
+  const resetForm = () => {
+    reset(defaultValues);
   };
 
   const formStructure = {
@@ -372,10 +383,29 @@ const ReportForm = () => {
                       <span>{value}</span>
                       <input
                         type="text"
-                        {...register(`${fieldsetKey as ReportFormArrayKeys}.${index}.${key}` as const, {
-                          required: "Обязательное поле",
-                        })}
+                        {...register(
+                          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                          `${fieldsetKey as ReportFormArrayKeys}.${index}.${key as keyof ReportFormValues[ReportFormArrayKeys][number]}` as const,
+                          {
+                            required: "Обязательное поле",
+                          },
+                        )}
                       />
+                      {errors?.[fieldsetKey as ReportFormArrayKeys]?.[index]?.[
+                        key as keyof ReportFormValues[ReportFormArrayKeys][number]
+                      ] && (
+                        <Alert
+                          message={
+                            (
+                              errors?.[fieldsetKey as ReportFormArrayKeys]?.[index]?.[
+                                key as keyof ReportFormValues[ReportFormArrayKeys][number]
+                              ] as unknown as FieldError
+                            )?.message
+                          }
+                          type="error"
+                          showIcon
+                        />
+                      )}
                     </Label>
                   ))}
                 </fieldset>
@@ -409,12 +439,29 @@ const ReportForm = () => {
                       },
                     )}
                   />
+                  {errors?.[fieldsetKey as ReportFormNonArrayKeys]?.[
+                    key as keyof ReportFormValues[ReportFormNonArrayKeys]
+                  ] && (
+                    <Alert
+                      message={
+                        errors?.[fieldsetKey as ReportFormNonArrayKeys]?.[
+                          key as keyof ReportFormValues[ReportFormNonArrayKeys]
+                        ]?.message
+                      }
+                      type="error"
+                      showIcon
+                    />
+                  )}
                 </Label>
               ))}
             </div>
           </fieldset>
         ),
       )}
+
+      <Button type="primary" onClick={resetForm}>
+        Сбросить значения
+      </Button>
 
       <Button type="primary" htmlType="submit" disabled={!isValid}>
         Отправить
