@@ -120,17 +120,7 @@ export interface ReportFormValues {
 }
 
 export type ElementOf<T> = T extends Array<infer U> ? U : never;
-export type DynamicFieldsetsType = ElementOf<ReportFormValues[keyof ReportFormValues]>;
-
-type ArrayKeys<T> = {
-  [K in keyof T]: T[K] extends any[] ? K : never;
-}[keyof T];
-type NonArrayKeys<T> = {
-  [K in keyof T]: T[K] extends any[] ? never : K;
-}[keyof T];
-
-export type ReportFormArrayKeys = ArrayKeys<ReportFormValues>;
-export type ReportFormNonArrayKeys = NonArrayKeys<ReportFormValues>;
+export type FieldsetsType = ElementOf<ReportFormValues[keyof ReportFormValues]>;
 
 export const defaultValues: ReportFormValues = {
   qualification_improvement: [

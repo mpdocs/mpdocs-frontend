@@ -10,12 +10,7 @@ import {
   FieldError,
 } from "react-hook-form";
 import Label from "@/app/components/Label";
-import {
-  defaultValues,
-  DynamicFieldsetsType,
-  ReportFormArrayKeys,
-  ReportFormValues,
-} from "@/app/components/ReportForm/types";
+import { defaultValues, FieldsetsType, ReportFormValues } from "@/app/components/ReportForm/types";
 import { Alert, Button, Form } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import api from "@/utils/api";
@@ -132,8 +127,8 @@ const ReportForm = () => {
   }, [reset, savedData]);
 
   const controlledFields = (
-    fields: Array<FieldArrayWithId<ReportFormValues, ReportFormArrayKeys, "id">>,
-    watchFields: DynamicFieldsetsType[],
+    fields: Array<FieldArrayWithId<ReportFormValues, keyof ReportFormValues, "id">>,
+    watchFields: FieldsetsType[],
   ) => fields.map((field, index: number) => ({ ...field, ...watchFields[index] }));
 
   const controlledQualificationImprovement = controlledFields(
@@ -180,8 +175,8 @@ const ReportForm = () => {
   );
 
   const appendFields = (
-    fieldsArray: UseFieldArrayReturn<ReportFormValues, ReportFormArrayKeys, "id">,
-    fieldsetKey: ReportFormArrayKeys,
+    fieldsArray: UseFieldArrayReturn<ReportFormValues, keyof ReportFormValues, "id">,
+    fieldsetKey: keyof ReportFormValues,
   ) => {
     fieldsArray.append({ ...defaultValues[fieldsetKey][0] });
   };
@@ -196,7 +191,6 @@ const ReportForm = () => {
 
   const formStructure = {
     qualification_improvement: {
-      is_dynamic: true,
       legend: "1. Информация о повышении квалификации в период 2021-22 уч. год",
       structure: [
         {
@@ -253,7 +247,6 @@ const ReportForm = () => {
       fields: qualificationImprovement,
     },
     methodical_works: {
-      is_dynamic: true,
       legend: "2.1 Перечень изданных учебно-методических пособий и указаний за 2021-22уч.год ",
       structure: [
         {
@@ -296,7 +289,6 @@ const ReportForm = () => {
       fields: methodicalWorks,
     },
     monographs: {
-      is_dynamic: true,
       legend: "3.1. Сведения об опубликованных монографиях",
       structure: [
         {
@@ -332,7 +324,6 @@ const ReportForm = () => {
       fields: monographs,
     },
     scopus_articles: {
-      is_dynamic: true,
       legend:
         "3.2 Перечень статей в журналах, опубликованных в 2021-22 уч.году(Публикации в изданиях, индексируемых в базе Scopus)",
       structure: [
@@ -369,7 +360,6 @@ const ReportForm = () => {
       fields: scopusArticles,
     },
     web_of_science_articles: {
-      is_dynamic: true,
       legend:
         "3.2 Перечень статей в журналах, опубликованных в 2021-22 уч.году(Публикации в изданиях, индексируемых в базе Web of Sсience)",
       structure: [
@@ -406,7 +396,6 @@ const ReportForm = () => {
       fields: webOfScienceArticles,
     },
     vak_articles: {
-      is_dynamic: true,
       legend:
         "3.2 Перечень статей в журналах, опубликованных в 2021-22 уч.году(Публикации в журналах из списка рекомендованных ВАК)",
       structure: [
@@ -443,7 +432,6 @@ const ReportForm = () => {
       fields: vakArticles,
     },
     rinc_articles: {
-      is_dynamic: true,
       legend:
         "3.2 Перечень статей в журналах, опубликованных в 2021-22 уч.году(Публикации в прочих изданиях, индексируемых базой РИНЦ)",
       structure: [
@@ -480,7 +468,6 @@ const ReportForm = () => {
       fields: rincArticles,
     },
     conferences: {
-      is_dynamic: true,
       legend:
         "3.3 Перечень конференций, в которых принимал участие в 2021-22 уч. году. (в том числе с участием студентов)",
       structure: [
@@ -524,7 +511,6 @@ const ReportForm = () => {
       fields: conferences,
     },
     patents: {
-      is_dynamic: true,
       legend:
         "3.4 Перечень международных и Российских патентов, полученных в 2021-22 уч. году (в том числе с участием студентов)",
       structure: [
@@ -568,7 +554,6 @@ const ReportForm = () => {
       fields: patents,
     },
     software_products: {
-      is_dynamic: true,
       legend: "3.5 Разработанные и зарегистрированные программные продукты, в т.ч. с участием студентов",
       structure: [
         {
@@ -604,7 +589,6 @@ const ReportForm = () => {
       fields: softwareProducts,
     },
     exhibitions: {
-      is_dynamic: true,
       legend: "3.5 Участие в выставках, в т.ч. с участием студентов",
       structure: [
         {
@@ -661,7 +645,6 @@ const ReportForm = () => {
       fields: exhibitions,
     },
     contests: {
-      is_dynamic: true,
       legend: "3.6 Перечень заявок, поданных на участие в федеральных, региональных и прочих конкурсах НИР",
       structure: [
         {
@@ -697,7 +680,6 @@ const ReportForm = () => {
       fields: contests,
     },
     scientific_publications: {
-      is_dynamic: true,
       legend: "4.1 Перечень научных публикаций с участием студентов",
       structure: [
         {
@@ -726,7 +708,6 @@ const ReportForm = () => {
       fields: scientificPublications,
     },
     student_works: {
-      is_dynamic: true,
       legend: "4.2 Перечень студенческих работ, поданных на конкурсы на лучшую НИР",
       structure: [
         {
@@ -762,7 +743,6 @@ const ReportForm = () => {
       fields: studentWorks,
     },
     olympiads: {
-      is_dynamic: true,
       legend: "4.3 Руководство студентами, участвующих в Олимпиадах",
       structure: [
         {
@@ -805,7 +785,6 @@ const ReportForm = () => {
       fields: olympiads,
     },
     organizational_participations: {
-      is_dynamic: true,
       legend: "5. Сведения об участии в организационной работе кафедры в 2021-22 уч. году.",
       structure: [
         {
@@ -841,7 +820,6 @@ const ReportForm = () => {
       fields: organizationalParticipations,
     },
     professional_orientation_participations: {
-      is_dynamic: true,
       legend: "6. Сведения об участии в профориентационной работе",
       structure: [
         {
@@ -877,7 +855,6 @@ const ReportForm = () => {
       fields: professionalOrientationParticipations,
     },
     educational_participations: {
-      is_dynamic: true,
       legend: "7. Сведения об участии в учебно-воспитательной работе",
       structure: [
         {
@@ -926,78 +903,74 @@ const ReportForm = () => {
   };
 
   return (
-    <Form onFinish={handleSubmit(sendReport)} className="lg:w-5/12 md:w-8/12 sm:w-12/12">
-      {Object.entries(formStructure).map(([fieldsetKey, value]) =>
-        value.is_dynamic ? (
-          <fieldset key={fieldsetKey}>
-            <legend>{value.legend}</legend>
-            <div>
-              {value.instances.map((field, index) => (
-                <fieldset key={field.id}>
-                  <legend>№ {index + 1}</legend>
-                  <Button
-                    onClick={() => {
-                      removeFields(value.fields, index);
-                    }}
-                    type="primary"
-                    htmlType="button"
-                    danger
+    <Form onFinish={handleSubmit(sendReport)}>
+      {Object.entries(formStructure).map(([fieldsetKey, value]) => (
+        <fieldset key={fieldsetKey}>
+          <legend>{value.legend}</legend>
+          <div>
+            {value.instances.map((field, index) => (
+              <fieldset key={field.id}>
+                <legend>№ {index + 1}</legend>
+                <Button
+                  onClick={() => {
+                    removeFields(value.fields, index);
+                  }}
+                  type="primary"
+                  htmlType="button"
+                  danger
+                >
+                  Удалить
+                  <MinusCircleOutlined style={{ fontSize: "22px" }} className="dynamic-delete-button" />
+                </Button>
+                {value.structure.map((item) => (
+                  <Label
+                    key={`${fieldsetKey}.${index}.${item.field.key}`}
+                    htmlFor={`${fieldsetKey}.${index}.${item.field.key}`}
                   >
-                    Удалить
-                    <MinusCircleOutlined style={{ fontSize: "22px" }} className="dynamic-delete-button" />
-                  </Button>
-                  {value.structure.map((item) => (
-                    <Label
-                      key={`${fieldsetKey}.${index}.${item.field.key}`}
-                      htmlFor={`${fieldsetKey}.${index}.${item.field.key}`}
-                    >
-                      <span>{item.field.value}</span>
-                      <input
-                        type={item.type}
-                        {...register(
-                          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-                          `${fieldsetKey as ReportFormArrayKeys}.${index}.${item.field.key as keyof ReportFormValues[ReportFormArrayKeys][number]}` as const,
-                          {
-                            required: "Обязательное поле",
-                          },
-                        )}
-                      />
-                      {errors?.[fieldsetKey as ReportFormArrayKeys]?.[index]?.[
-                        item.field.key as keyof ReportFormValues[ReportFormArrayKeys][number]
-                      ] && (
-                        <Alert
-                          message={
-                            (
-                              errors?.[fieldsetKey as ReportFormArrayKeys]?.[index]?.[
-                                item.field.key as keyof ReportFormValues[ReportFormArrayKeys][number]
-                              ] as unknown as FieldError
-                            )?.message
-                          }
-                          type="error"
-                          showIcon
-                        />
+                    <span>{item.field.value}</span>
+                    <input
+                      type={item.type}
+                      {...register(
+                        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+                        `${fieldsetKey as keyof ReportFormValues}.${index}.${item.field.key as keyof ReportFormValues[keyof ReportFormValues][number]}` as const,
+                        {
+                          required: "Обязательное поле",
+                        },
                       )}
-                    </Label>
-                  ))}
-                </fieldset>
-              ))}
-            </div>
-            <Button
-              onClick={() => {
-                appendFields(
-                  value.fields as UseFieldArrayReturn<ReportFormValues, ReportFormArrayKeys, "id">,
-                  fieldsetKey as ReportFormArrayKeys,
-                );
-              }}
-              type="primary"
-            >
-              Добавить
-            </Button>
-          </fieldset>
-        ) : (
-          <></>
-        ),
-      )}
+                    />
+                    {errors?.[fieldsetKey as keyof ReportFormValues]?.[index]?.[
+                      item.field.key as keyof ReportFormValues[keyof ReportFormValues][number]
+                    ] && (
+                      <Alert
+                        message={
+                          (
+                            errors?.[fieldsetKey as keyof ReportFormValues]?.[index]?.[
+                              item.field.key as keyof ReportFormValues[keyof ReportFormValues][number]
+                            ] as unknown as FieldError
+                          )?.message
+                        }
+                        type="error"
+                        showIcon
+                      />
+                    )}
+                  </Label>
+                ))}
+              </fieldset>
+            ))}
+          </div>
+          <Button
+            onClick={() => {
+              appendFields(
+                value.fields as UseFieldArrayReturn<ReportFormValues, keyof ReportFormValues, "id">,
+                fieldsetKey as keyof ReportFormValues,
+              );
+            }}
+            type="primary"
+          >
+            Добавить
+          </Button>
+        </fieldset>
+      ))}
 
       <Button type="primary" onClick={resetForm}>
         Сбросить значения
