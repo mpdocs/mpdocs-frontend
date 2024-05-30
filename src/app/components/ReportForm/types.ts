@@ -102,7 +102,10 @@ export interface ReportFormValues {
   qualification_improvement: QualificationImprovement;
   methodical_works: MethodicalWork[];
   monographs: Monograph[];
-  // articles: Article[]; // надо разделить на 4 типа
+  scopus_articles: Article[];
+  web_of_science_articles: Article[];
+  vak_articles: Article[];
+  rinc_articles: Article[];
   conferences: Conference[];
   patents: Patent[];
   software_products: SoftwareProduct[];
@@ -149,6 +152,38 @@ export const defaultValues: ReportFormValues = {
     },
   ],
   monographs: [
+    {
+      name: "",
+      authors_with_work: "",
+      publisher: "",
+      pages_count: "",
+    },
+  ],
+  scopus_articles: [
+    {
+      name: "",
+      authors_with_work: "",
+      publisher: "",
+      pages_count: "",
+    },
+  ],
+  web_of_science_articles: [
+    {
+      name: "",
+      authors_with_work: "",
+      publisher: "",
+      pages_count: "",
+    },
+  ],
+  vak_articles: [
+    {
+      name: "",
+      authors_with_work: "",
+      publisher: "",
+      pages_count: "",
+    },
+  ],
+  rinc_articles: [
     {
       name: "",
       authors_with_work: "",

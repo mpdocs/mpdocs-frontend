@@ -54,6 +54,22 @@ const ReportForm = () => {
     control,
     name: "monographs",
   });
+  const scopusArticles = useFieldArray({
+    control,
+    name: "scopus_articles",
+  });
+  const webOfScienceArticles = useFieldArray({
+    control,
+    name: "web_of_science_articles",
+  });
+  const vakArticles = useFieldArray({
+    control,
+    name: "vak_articles",
+  });
+  const rincArticles = useFieldArray({
+    control,
+    name: "rinc_articles",
+  });
   const conferences = useFieldArray({
     control,
     name: "conferences",
@@ -121,6 +137,13 @@ const ReportForm = () => {
     watchAllFields.methodical_works || [],
   );
   const controlledMonographsFields = controlledFields(monographs.fields, watchAllFields.monographs || []);
+  const controlledScopusArticlesFields = controlledFields(scopusArticles.fields, watchAllFields.scopus_articles || []);
+  const controlledWebOfScienceArticlesFields = controlledFields(
+    webOfScienceArticles.fields,
+    watchAllFields.web_of_science_articles || [],
+  );
+  const controlledVakArticlesFields = controlledFields(vakArticles.fields, watchAllFields.vak_articles || []);
+  const controlledRincArticlesFields = controlledFields(rincArticles.fields, watchAllFields.rinc_articles || []);
   const controlledConferencesFields = controlledFields(conferences.fields, watchAllFields.conferences || []);
   const controlledPatentsFields = controlledFields(patents.fields, watchAllFields.patents || []);
   const controlledSoftwareProductsFields = controlledFields(
@@ -203,6 +226,57 @@ const ReportForm = () => {
       },
       instances: controlledMonographsFields,
       fields: monographs,
+    },
+    scopus_articles: {
+      is_dynamic: true,
+      legend:
+        "3.2 Перечень статей в журналах, опубликованных в 2021-22 уч.году(Публикации в изданиях, индексируемых в базе Scopus)",
+      structure: {
+        name: "Наименование статьи",
+        authors_with_work: "ФИО авторов и соавторов с указанием места работы",
+        publisher: "Выходные данные",
+        pages_count: "Кол-во печатных листов",
+      },
+      instances: controlledScopusArticlesFields,
+      fields: scopusArticles,
+    },
+    web_of_science_articles: {
+      is_dynamic: true,
+      legend:
+        "3.2 Перечень статей в журналах, опубликованных в 2021-22 уч.году(Публикации в изданиях, индексируемых в базе Web of Sсience)",
+      structure: {
+        name: "Наименование статьи",
+        authors_with_work: "ФИО авторов и соавторов с указанием места работы",
+        publisher: "Выходные данные",
+        pages_count: "Кол-во печатных листов",
+      },
+      instances: controlledWebOfScienceArticlesFields,
+      fields: webOfScienceArticles,
+    },
+    vak_articles: {
+      is_dynamic: true,
+      legend:
+        "3.2 Перечень статей в журналах, опубликованных в 2021-22 уч.году(Публикации в журналах из списка рекомендованных ВАК)",
+      structure: {
+        name: "Наименование статьи",
+        authors_with_work: "ФИО авторов и соавторов с указанием места работы",
+        publisher: "Выходные данные",
+        pages_count: "Кол-во печатных листов",
+      },
+      instances: controlledVakArticlesFields,
+      fields: vakArticles,
+    },
+    rinc_articles: {
+      is_dynamic: true,
+      legend: "Публикации в прочих изданиях, индексируемых базой РИНЦ)",
+      structure: {
+        name: "Наименование статьи",
+        authors_with_work: "ФИО авторов и соавторов с указанием места работы",
+        publisher: "Выходные данные",
+        pages_count: "Кол-во печатных листов",
+      },
+      instances: controlledRincArticlesFields,
+      fields: rincArticles,
     },
     conferences: {
       is_dynamic: true,
