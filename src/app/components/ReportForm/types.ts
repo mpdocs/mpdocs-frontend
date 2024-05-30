@@ -64,10 +64,10 @@ export interface Exhibition {
 }
 
 export interface Contest {
-  names: string;
-  application_names: string;
-  leader_fullnames: string;
-  responsible_executor_fullnames: string;
+  name: string;
+  application_name: string;
+  leader_fullname: string;
+  responsible_executor_fullname: string;
 }
 
 export interface ScientificPublication {
@@ -230,10 +230,10 @@ export const defaultValues: ReportFormValues = {
   ],
   contests: [
     {
-      names: "",
-      application_names: "",
-      leader_fullnames: "",
-      responsible_executor_fullnames: "",
+      name: "",
+      application_name: "",
+      leader_fullname: "",
+      responsible_executor_fullname: "",
     },
   ],
   scientific_publications: [
