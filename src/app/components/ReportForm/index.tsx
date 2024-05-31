@@ -181,11 +181,14 @@ const ReportForm = () => {
     fieldsArray.append({ ...defaultValues[fieldsetKey][0] });
   };
 
-  const removeFields = (fieldsArray: any, index: number) => {
+  const removeFields = (
+    fieldsArray: UseFieldArrayReturn<ReportFormValues, keyof ReportFormValues, "id">,
+    index: number,
+  ) => {
     fieldsArray.remove(index);
   };
 
-  const resetForm = () => {
+  const resetFormValues = () => {
     reset(defaultValues);
   };
 
@@ -913,7 +916,10 @@ const ReportForm = () => {
                 <legend>№ {index + 1}</legend>
                 <Button
                   onClick={() => {
-                    removeFields(value.fields, index);
+                    removeFields(
+                      value.fields as UseFieldArrayReturn<ReportFormValues, keyof ReportFormValues, "id">,
+                      index,
+                    );
                   }}
                   type="primary"
                   htmlType="button"
@@ -972,7 +978,7 @@ const ReportForm = () => {
         </fieldset>
       ))}
 
-      <Button type="primary" onClick={resetForm}>
+      <Button type="primary" onClick={resetFormValues}>
         Сбросить значения
       </Button>
 
