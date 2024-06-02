@@ -937,6 +937,7 @@ const ReportForm = () => {
                     <input
                       type={item.type}
                       {...register(
+                        // fixme: type of item.field.key
                         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                         `${fieldsetKey as keyof ReportFormValues}.${index}.${item.field.key as keyof ReportFormValues[keyof ReportFormValues][number]}` as const,
                         {
