@@ -1000,7 +1000,7 @@ const ReportForm = () => {
                   type="primary"
                   htmlType="button"
                   danger
-                  className={`${styles["button-delete"]}`}
+                  className={`${styles.deleteButton}`}
                 >
                   Удалить
                   <MinusCircleOutlined style={{ fontSize: "22px" }} className="dynamic-delete-button" />

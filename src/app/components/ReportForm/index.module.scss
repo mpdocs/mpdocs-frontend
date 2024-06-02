@@ -70,7 +70,7 @@
     margin: 0 auto;
 }
 
-.button-delete {
+.deleteButton {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -97,7 +97,7 @@
         }
     }
 
-    .button, .button-delete {
+    .button, .deleteButton {
         width: 100%;
         font-size: 0.7rem;
     }
