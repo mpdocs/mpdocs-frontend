@@ -97,13 +97,9 @@
         }
     }
 
-    .button {
+    .button, .button-delete {
         width: 100%;
         font-size: 0.7rem;
-        &-delete {
-            width: 100%;
-            font-size: 0.7rem;
-        }
     }
 }
 
