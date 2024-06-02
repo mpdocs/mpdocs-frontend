@@ -234,7 +234,7 @@ const ReportForm = () => {
           field: {
             key: "diploma_number",
             value: "№ диплома (свидетельства)",
-            placeholder: "Номер вашего диплома",
+            placeholder: "107777 0253595",
           },
         },
         {
