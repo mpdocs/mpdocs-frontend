@@ -19,13 +19,14 @@ import {
   ReportFormValuesArrayKeys,
   StaticInputsKeys,
 } from "@/app/components/ReportForm/types";
-import { Alert, Button, Form } from "antd";
+import { Alert, Button, Form, Modal } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import api from "@/utils/api";
 
 const ReportForm = () => {
   const [isClient, setIsClient] = useState(false);
   const [savedData, setSavedData] = useState(defaultValues);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -198,6 +199,19 @@ const ReportForm = () => {
 
   const resetFormValues = () => {
     reset(defaultValues);
+  };
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    resetFormValues();
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
   };
 
   const formStructure = {
@@ -1154,9 +1168,19 @@ const ReportForm = () => {
         ),
       )}
 
-      <Button type="primary" onClick={resetFormValues} className={styles.button}>
+      <Button type="primary" onClick={showModal} className={styles.button} danger>
         Сбросить значения
       </Button>
+      <Modal
+        title="Подтверждение сброса значений"
+        open={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText="Да"
+        cancelText="Нет"
+      >
+        <p>Вы уверены, что хотите сбросить все значения?</p>
+      </Modal>
 
       <Button type="primary" htmlType="submit" disabled={!isValid} className={styles.button}>
         Отправить
