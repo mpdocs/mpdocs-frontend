@@ -10,6 +10,7 @@ import {
   FieldError,
 } from "react-hook-form";
 import Label from "@/app/components/Label";
+import styles from "./index.module.scss";
 import { defaultValues, FieldsetsType, ReportFormValues } from "@/app/components/ReportForm/types";
 import { Alert, Button, Form } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
@@ -201,6 +202,7 @@ const ReportForm = () => {
           field: {
             key: "form",
             value: "Форма повышения квалификации",
+            placeholder: "Повышение квалификации",
           },
         },
         {
@@ -208,6 +210,7 @@ const ReportForm = () => {
           field: {
             key: "country",
             value: "Страна",
+            placeholder: "РФ",
           },
         },
         {
@@ -215,6 +218,7 @@ const ReportForm = () => {
           field: {
             key: "organization",
             value: "Организация",
+            placeholder: "Московский Политех",
           },
         },
         {
@@ -222,6 +226,7 @@ const ReportForm = () => {
           field: {
             key: "course_name",
             value: "Наименование курса (дисциплины)",
+            placeholder: "Программа повышения квалификации преподавателей",
           },
         },
         {
@@ -229,6 +234,7 @@ const ReportForm = () => {
           field: {
             key: "diploma_number",
             value: "№ диплома (свидетельства)",
+            placeholder: "107777 0253595",
           },
         },
         {
@@ -257,6 +263,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование",
+            placeholder: "Дискретная математика",
           },
         },
         {
@@ -264,6 +271,7 @@ const ReportForm = () => {
           field: {
             key: "authors",
             value: "ФИО авторов",
+            placeholder: "Муханов С.А.",
           },
         },
         {
@@ -271,6 +279,7 @@ const ReportForm = () => {
           field: {
             key: "type",
             value: "Вид: (учебник, пособие, методические указания и т.д)",
+            placeholder: "Учебное пособие",
           },
         },
         {
@@ -278,6 +287,7 @@ const ReportForm = () => {
           field: {
             key: "publisher",
             value: "Выходные данные",
+            placeholder: "Московский Политех. ISBN 978-5-2760-2682-4.",
           },
         },
         {
@@ -285,6 +295,7 @@ const ReportForm = () => {
           field: {
             key: "pages_count",
             value: "Объём в п.л. или стр.",
+            placeholder: "100 с.",
           },
         },
       ],
@@ -299,6 +310,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование труда",
+            placeholder: "Использование кватернионов при решении некоторых многопараметрических задач",
           },
         },
         {
@@ -306,6 +318,7 @@ const ReportForm = () => {
           field: {
             key: "authors_with_work",
             value: "ФИО авторов с указанием места работы",
+            placeholder: "Муханов С.А.",
           },
         },
         {
@@ -313,6 +326,7 @@ const ReportForm = () => {
           field: {
             key: "publisher",
             value: "Выходные данные",
+            placeholder: "Алгебра, теория чисел, дискретная геометрия",
           },
         },
         {
@@ -320,6 +334,7 @@ const ReportForm = () => {
           field: {
             key: "pages_count",
             value: "Объём в п.л. или стр.",
+            placeholder: "10 п. л.",
           },
         },
       ],
@@ -335,6 +350,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование статьи",
+            placeholder: "Использование кватернионов при решении некоторых многопараметрических задач",
           },
         },
         {
@@ -342,6 +358,7 @@ const ReportForm = () => {
           field: {
             key: "authors_with_work",
             value: "ФИО авторов и соавторов с указанием места работы",
+            placeholder: "Муханов С.А.",
           },
         },
         {
@@ -349,6 +366,7 @@ const ReportForm = () => {
           field: {
             key: "publisher",
             value: "Выходные данные",
+            placeholder: "Алгебра, теория чисел, дискретная геометрия",
           },
         },
         {
@@ -356,6 +374,7 @@ const ReportForm = () => {
           field: {
             key: "pages_count",
             value: "Кол-во печатных листов",
+            placeholder: "10 п. л.",
           },
         },
       ],
@@ -371,6 +390,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование статьи",
+            placeholder: "Использование кватернионов при решении некоторых многопараметрических задач",
           },
         },
         {
@@ -378,6 +398,7 @@ const ReportForm = () => {
           field: {
             key: "authors_with_work",
             value: "ФИО авторов и соавторов с указанием места работы",
+            placeholder: "Муханов С.А.",
           },
         },
         {
@@ -385,6 +406,7 @@ const ReportForm = () => {
           field: {
             key: "publisher",
             value: "Выходные данные",
+            placeholder: "Алгебра, теория чисел, дискретная геометрия",
           },
         },
         {
@@ -392,6 +414,7 @@ const ReportForm = () => {
           field: {
             key: "pages_count",
             value: "Кол-во печатных листов",
+            placeholder: "10 п. л.",
           },
         },
       ],
@@ -407,6 +430,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование статьи",
+            placeholder: "Использование кватернионов при решении некоторых многопараметрических задач",
           },
         },
         {
@@ -414,6 +438,7 @@ const ReportForm = () => {
           field: {
             key: "authors_with_work",
             value: "ФИО авторов и соавторов с указанием места работы",
+            placeholder: "Муханов С.А.",
           },
         },
         {
@@ -421,6 +446,7 @@ const ReportForm = () => {
           field: {
             key: "publisher",
             value: "Выходные данные",
+            placeholder: "Алгебра, теория чисел, дискретная геометрия",
           },
         },
         {
@@ -428,6 +454,7 @@ const ReportForm = () => {
           field: {
             key: "pages_count",
             value: "Кол-во печатных листов",
+            placeholder: "10 п. л.",
           },
         },
       ],
@@ -443,6 +470,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование статьи",
+            placeholder: "Использование кватернионов при решении некоторых многопараметрических задач",
           },
         },
         {
@@ -450,6 +478,7 @@ const ReportForm = () => {
           field: {
             key: "authors_with_work",
             value: "ФИО авторов и соавторов с указанием места работы",
+            placeholder: "Муханов С.А.",
           },
         },
         {
@@ -457,6 +486,7 @@ const ReportForm = () => {
           field: {
             key: "publisher",
             value: "Выходные данные",
+            placeholder: "Алгебра, теория чисел, дискретная геометрия",
           },
         },
         {
@@ -464,6 +494,7 @@ const ReportForm = () => {
           field: {
             key: "pages_count",
             value: "Кол-во печатных листов",
+            placeholder: "10 п. л.",
           },
         },
       ],
@@ -479,6 +510,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Название конференции",
+            placeholder: "Конференция по математике",
           },
         },
         {
@@ -493,6 +525,7 @@ const ReportForm = () => {
           field: {
             key: "place",
             value: "Место проведения",
+            placeholder: "Московский Политех",
           },
         },
         {
@@ -500,6 +533,7 @@ const ReportForm = () => {
           field: {
             key: "status",
             value: "Статус конференции (межвузовская, региональная, международная)",
+            placeholder: "Международная конференция",
           },
         },
         {
@@ -507,6 +541,7 @@ const ReportForm = () => {
           field: {
             key: "participation_type",
             value: "Вид участия (очно или онлайн). Название доклада. При участии студентов указать их ФИО и группу.",
+            placeholder: "Очное участие",
           },
         },
       ],
@@ -522,6 +557,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Название изобретения",
+            placeholder: "Беспилотный транспорт",
           },
         },
         {
@@ -529,6 +565,7 @@ const ReportForm = () => {
           field: {
             key: "authors_fullname",
             value: "ФИО авторов (для студентов указать группу)",
+            placeholder: "221-322",
           },
         },
         {
@@ -543,6 +580,7 @@ const ReportForm = () => {
           field: {
             key: "country",
             value: "Страна патентования",
+            placeholder: "РФ",
           },
         },
         {
@@ -550,6 +588,7 @@ const ReportForm = () => {
           field: {
             key: "patent_owner",
             value: "Патентообладатель",
+            placeholder: "Московский Политех",
           },
         },
       ],
@@ -564,6 +603,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Название программного продукта",
+            placeholder: "Вывод сведений о выполнении показателей",
           },
         },
         {
@@ -571,6 +611,7 @@ const ReportForm = () => {
           field: {
             key: "authors_fullname",
             value: "ФИО авторов (для студентов указать группу)",
+            placeholder: "221-322",
           },
         },
         {
@@ -578,6 +619,7 @@ const ReportForm = () => {
           field: {
             key: "registration_place",
             value: "Место регистрации",
+            placeholder: "РФ",
           },
         },
         {
@@ -585,6 +627,7 @@ const ReportForm = () => {
           field: {
             key: "where_used",
             value: "Где используется",
+            placeholder: "Кафедра математики",
           },
         },
       ],
@@ -599,6 +642,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Название выставки",
+            placeholder: "Карьерный марафон",
           },
         },
         {
@@ -613,6 +657,7 @@ const ReportForm = () => {
           field: {
             key: "place",
             value: "Место проведения",
+            placeholder: "ВДНХ",
           },
         },
         {
@@ -620,6 +665,7 @@ const ReportForm = () => {
           field: {
             key: "participants_fullname",
             value: "ФИО участников (для студентов указать группу)",
+            placeholder: "221-322",
           },
         },
         {
@@ -627,6 +673,7 @@ const ReportForm = () => {
           field: {
             key: "exhibition_type",
             value: "Статус выставки (на базе университета, межвузовская, региональная и т.д.)",
+            placeholder: "Межвузовская выставка",
           },
         },
         {
@@ -634,6 +681,7 @@ const ReportForm = () => {
           field: {
             key: "exhibit_names",
             value: "Названия экспонатов",
+            placeholder: "Стенды работодатели",
           },
         },
         {
@@ -641,6 +689,7 @@ const ReportForm = () => {
           field: {
             key: "result",
             value: "Результат участия (Награды, премия дипломы)",
+            placeholder: "Сертификат об участии",
           },
         },
       ],
@@ -655,6 +704,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование конкурса (ФЦП, РНФ и т.д.)",
+            placeholder: "РНФ",
           },
         },
         {
@@ -662,6 +712,7 @@ const ReportForm = () => {
           field: {
             key: "application_name",
             value: "Наименование заявки (НИР, объем предполагаемого финансирования)",
+            placeholder: "НИР",
           },
         },
         {
@@ -669,6 +720,7 @@ const ReportForm = () => {
           field: {
             key: "leader_fullname",
             value: "ФИО руководителя",
+            placeholder: "Муханов С.А.",
           },
         },
         {
@@ -676,6 +728,7 @@ const ReportForm = () => {
           field: {
             key: "responsible_executor_fullname",
             value: "ФИО ответственного исполнителя",
+            placeholder: "Муханов С.А.",
           },
         },
       ],
@@ -690,6 +743,7 @@ const ReportForm = () => {
           field: {
             key: "authors_fullname",
             value: "ФИО авторов (для студентов указать группу)",
+            placeholder: "221-322",
           },
         },
         {
@@ -697,6 +751,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Название публикации, количество печатных листов",
+            placeholder: "Научная статья о математике, 10 п. л.",
           },
         },
         {
@@ -704,6 +759,7 @@ const ReportForm = () => {
           field: {
             key: "bibliographic_data",
             value: "Библиографические данные",
+            placeholder: "Журнал 'Математика и информатика', 2023, №5, стр. 123-135",
           },
         },
       ],
@@ -718,6 +774,7 @@ const ReportForm = () => {
           field: {
             key: "contest",
             value: "Название конкурса. Статус (внутривузовский, межвузовский, всероссийский, международный и т.д.)",
+            placeholder: "Межвузовский конкурс",
           },
         },
         {
@@ -725,6 +782,7 @@ const ReportForm = () => {
           field: {
             key: "organizer",
             value: "Организатор конкурса",
+            placeholder: "Московский Политех",
           },
         },
         {
@@ -732,6 +790,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Наименование работы",
+            placeholder: "Исследование математических моделей",
           },
         },
         {
@@ -739,6 +798,7 @@ const ReportForm = () => {
           field: {
             key: "authors_fullname",
             value: "ФИО авторов (для студентов указать группу)",
+            placeholder: "221-322",
           },
         },
       ],
@@ -753,6 +813,7 @@ const ReportForm = () => {
           field: {
             key: "name",
             value: "Название Олимпиады и ее статус",
+            placeholder: "Межвузовская олимпиада по математике",
           },
         },
         {
@@ -767,6 +828,7 @@ const ReportForm = () => {
           field: {
             key: "place",
             value: "Место проведения",
+            placeholder: "Московский Политех",
           },
         },
         {
@@ -774,6 +836,7 @@ const ReportForm = () => {
           field: {
             key: "participant_fullname",
             value: "ФИО участника, номер группы",
+            placeholder: "221-322",
           },
         },
         {
@@ -781,6 +844,7 @@ const ReportForm = () => {
           field: {
             key: "result",
             value: "Результат",
+            placeholder: "Победа в олимпиаде",
           },
         },
       ],
@@ -795,6 +859,7 @@ const ReportForm = () => {
           field: {
             key: "content",
             value: "Содержание работы",
+            placeholder: "Организация студенческой конференции",
           },
         },
         {
@@ -802,6 +867,7 @@ const ReportForm = () => {
           field: {
             key: "participant_degree",
             value: "Степень участия",
+            placeholder: "Руководитель проекта",
           },
         },
         {
@@ -809,6 +875,7 @@ const ReportForm = () => {
           field: {
             key: "result",
             value: "Результат",
+            placeholder: "Успешное проведение мероприятия с участием студентов",
           },
         },
         {
@@ -816,6 +883,7 @@ const ReportForm = () => {
           field: {
             key: "notes",
             value: "Примечания, рекомендации",
+            placeholder: "Рекомендовано проводить ежегодно",
           },
         },
       ],
@@ -830,6 +898,7 @@ const ReportForm = () => {
           field: {
             key: "content",
             value: "Содержание работы",
+            placeholder: "Участие в ярмарке профессий",
           },
         },
         {
@@ -837,6 +906,7 @@ const ReportForm = () => {
           field: {
             key: "participant_degree",
             value: "Степень участия",
+            placeholder: "Спикер на мероприятии",
           },
         },
         {
@@ -844,6 +914,7 @@ const ReportForm = () => {
           field: {
             key: "result",
             value: "Результат",
+            placeholder: "Привлечение абитуриентов",
           },
         },
         {
@@ -851,6 +922,7 @@ const ReportForm = () => {
           field: {
             key: "notes",
             value: "Примечания, рекомендации",
+            placeholder: "Усилить работу с местными школами",
           },
         },
       ],
@@ -865,6 +937,7 @@ const ReportForm = () => {
           field: {
             key: "content",
             value: "Содержание работы",
+            placeholder: "Проведение занятий по математике",
           },
         },
         {
@@ -872,6 +945,7 @@ const ReportForm = () => {
           field: {
             key: "participant_degree",
             value: "Степень участия",
+            placeholder: "Преподаватель",
           },
         },
         {
@@ -879,6 +953,7 @@ const ReportForm = () => {
           field: {
             key: "result",
             value: "Результат",
+            placeholder: "Улучшение успеваемости учеников",
           },
         },
         {
@@ -886,6 +961,7 @@ const ReportForm = () => {
           field: {
             key: "notes",
             value: "Примечания, рекомендации",
+            placeholder: "Внедрить методику в основной курс",
           },
         },
       ],
@@ -908,12 +984,12 @@ const ReportForm = () => {
   return (
     <Form onFinish={handleSubmit(sendReport)}>
       {Object.entries(formStructure).map(([fieldsetKey, value]) => (
-        <fieldset key={fieldsetKey}>
-          <legend>{value.legend}</legend>
+        <fieldset key={fieldsetKey} className={styles.fieldset}>
+          <legend className={styles.fieldset__legend}>{value.legend}</legend>
           <div>
             {value.instances.map((field, index) => (
-              <fieldset key={field.id}>
-                <legend>№ {index + 1}</legend>
+              <fieldset key={field.id} className={styles.fieldset}>
+                <legend className={styles.fieldset__legend}>№ {index + 1}</legend>
                 <Button
                   onClick={() => {
                     removeFields(
@@ -924,16 +1000,18 @@ const ReportForm = () => {
                   type="primary"
                   htmlType="button"
                   danger
+                  className={styles.deleteButton}
                 >
                   Удалить
-                  <MinusCircleOutlined style={{ fontSize: "22px" }} className="dynamic-delete-button" />
+                  <MinusCircleOutlined style={{ fontSize: "22px" }} className={styles.deleteSvg} />
                 </Button>
                 {value.structure.map((item) => (
                   <Label
                     key={`${fieldsetKey}.${index}.${item.field.key}`}
                     htmlFor={`${fieldsetKey}.${index}.${item.field.key}`}
+                    className={styles.fieldset__label}
                   >
-                    <span>{item.field.value}</span>
+                    <span className={styles.fieldset__span}>{item.field.value}</span>
                     <input
                       type={item.type}
                       {...register(
@@ -944,6 +1022,8 @@ const ReportForm = () => {
                           required: "Обязательное поле",
                         },
                       )}
+                      className={styles.input}
+                      placeholder={item.field.placeholder}
                     />
                     {errors?.[fieldsetKey as keyof ReportFormValues]?.[index]?.[
                       item.field.key as keyof ReportFormValues[keyof ReportFormValues][number]
@@ -973,17 +1053,18 @@ const ReportForm = () => {
               );
             }}
             type="primary"
+            className={styles.button}
           >
             Добавить
           </Button>
         </fieldset>
       ))}
 
-      <Button type="primary" onClick={resetFormValues}>
+      <Button type="primary" onClick={resetFormValues} className={styles.button}>
         Сбросить значения
       </Button>
 
-      <Button type="primary" htmlType="submit" disabled={!isValid}>
+      <Button type="primary" htmlType="submit" disabled={!isValid} className={styles.button}>
         Отправить
       </Button>
     </Form>

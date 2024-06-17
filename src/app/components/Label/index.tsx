@@ -3,11 +3,12 @@ import React from "react";
 interface CustomLabelProps {
   htmlFor: string;
   children: React.ReactNode;
+  className?: string;
 }
 
-const Label = ({ htmlFor, children }: CustomLabelProps) => {
+const Label = ({ htmlFor, children, className }: CustomLabelProps) => {
   return (
-    <label className="flex flex-col gap-2" htmlFor={htmlFor}>
+    <label className={className} htmlFor={htmlFor}>
       {children}
     </label>
   );
