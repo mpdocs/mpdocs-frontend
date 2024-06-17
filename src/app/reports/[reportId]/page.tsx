@@ -6,12 +6,12 @@ interface PageProps {
   params: { reportId: number };
 }
 
-const getNewsDetail = async (id: number): Promise<Response> => {
+const getReportDetail = async (id: number): Promise<Response> => {
   return await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reports/${id}/`);
 };
 const Page: React.FC<PageProps> = async ({ params }: { params: { reportId: number } }) => {
   try {
-    const response = await getNewsDetail(params.reportId);
+    const response = await getReportDetail(params.reportId);
     if (response.ok) {
       const report = (await response.json()) as ReportDetailType;
       return <ReportDetail report={report} />;
