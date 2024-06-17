@@ -225,8 +225,8 @@ const ReportForm = () => {
           type: "text",
           field: {
             key: "work_time_coefficient",
-            value: "work_time_coefficient",
-            placeholder: "work_time_coefficient",
+            value: "Коэффициент ставки",
+            placeholder: "1.0",
           },
         },
       ],
@@ -241,8 +241,8 @@ const ReportForm = () => {
           type: "text",
           field: {
             key: "academic_degree",
-            value: "academic_degree",
-            placeholder: "academic_degree квалификации",
+            value: "Учёная степень",
+            placeholder: "К.п.н",
           },
         },
       ],
@@ -257,8 +257,8 @@ const ReportForm = () => {
           type: "text",
           field: {
             key: "position",
-            value: "position",
-            placeholder: "position",
+            value: "Должность",
+            placeholder: "Доцент",
           },
         },
       ],
