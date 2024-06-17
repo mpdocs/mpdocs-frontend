@@ -46,7 +46,13 @@ const RightMenu: React.FC<IMenu> = ({ current, menu }) => {
       ];
   return (
     <>
-      <Menu onClick={menu.onClick} selectedKeys={[current]} mode={menu.mode} items={items} />
+      <Menu
+        onClick={menu.onClick}
+        className={styles.menu__wrapper}
+        selectedKeys={[current]}
+        mode={menu.mode}
+        items={items}
+      />
     </>
   );
 };

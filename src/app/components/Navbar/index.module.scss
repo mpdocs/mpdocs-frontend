@@ -27,18 +27,18 @@
 
 .menu {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 
   &_left {
-    width: 100%;
-    min-width: 30rem;
   }
 
   &_right {
-    min-width: 10rem;
-    float: right;
+    width: 100%;
     z-index: 99999;
+  }
+  &__wrapper{
+    display: flex;
+    justify-content: flex-end;
   }
 
   &__button {
@@ -54,41 +54,7 @@
   &__username {
     margin-right: 10px;
   }
-}
 
-.menu .ant-layout-header {
-  padding: 0 20px;
-}
-
-.menu .ant-menu-horizontal {
-  border-bottom: 0;
-}
-
-.menu .ant-menu-item {
-  padding-bottom: 0;
-  padding-right: 0;
-}
-
-.ant-drawer-body {
-  padding: 0;
-}
-
-.ant-menu-item {
-  padding-left: 0;
-}
-
-.ant-drawer-body .ant-menu-horizontal > .ant-menu-item,
-.ant-drawer-body .ant-menu-horizontal > .ant-menu-submenu {
-  display: inline-block;
-  width: 100%;
-}
-
-.ant-drawer-body .ant-menu-horizontal {
-  border-bottom: none;
-}
-
-.ant-drawer-body .ant-menu-horizontal > .ant-menu-item:hover {
-  border-bottom-color: transparent;
 }
 
 
@@ -121,9 +87,5 @@
     &_right {
       display: none;
     }
-  }
-
-  .ant-drawer-title > .header__logo {
-    margin-bottom: 0;
   }
 }
