@@ -99,6 +99,9 @@ export interface ActivitiesParticipation {
 }
 
 export interface ReportFormValues {
+  work_time_coefficient: number;
+  academic_degree: string;
+  position: string;
   qualification_improvement: QualificationImprovement[];
   methodical_works: MethodicalWork[];
   monographs: Monograph[];
@@ -119,10 +122,50 @@ export interface ReportFormValues {
   educational_participations: ActivitiesParticipation[];
 }
 
+export type ReportFormValuesArrayKeys =
+  | "qualification_improvement"
+  | "methodical_works"
+  | "monographs"
+  | "scopus_articles"
+  | "web_of_science_articles"
+  | "vak_articles"
+  | "rinc_articles"
+  | "conferences"
+  | "patents"
+  | "software_products"
+  | "exhibitions"
+  | "contests"
+  | "scientific_publications"
+  | "student_works"
+  | "olympiads"
+  | "organizational_participations"
+  | "professional_orientation_participations"
+  | "educational_participations";
+
 export type ElementOf<T> = T extends Array<infer U> ? U : never;
 export type FieldsetsType = ElementOf<ReportFormValues[keyof ReportFormValues]>;
 
+export type FieldsetsTypeKeys =
+  | keyof QualificationImprovement
+  | keyof MethodicalWork
+  | keyof Monograph
+  | keyof Article
+  | keyof Conference
+  | keyof Patent
+  | keyof SoftwareProduct
+  | keyof Exhibition
+  | keyof Contest
+  | keyof ScientificPublication
+  | keyof StudentWork
+  | keyof Olympiad
+  | keyof ActivitiesParticipation;
+
+export type StaticInputsKeys = "work_time_coefficient" | "academic_degree" | "position";
+
 export const defaultValues: ReportFormValues = {
+  work_time_coefficient: 0.0,
+  academic_degree: "",
+  position: "",
   qualification_improvement: [
     {
       form: "",
