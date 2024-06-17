@@ -1072,14 +1072,6 @@ const ReportForm = () => {
       .finally(() => {
         reset();
       });
-    // try {
-    //   await api.post("/reports/", data);
-    // } catch (err) {
-    //   console.error(err);
-    // } finally {
-    //   router.push(`/reports/${1}`);
-    //   reset();
-    // }
   };
 
   return (
