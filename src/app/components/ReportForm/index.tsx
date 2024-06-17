@@ -22,8 +22,10 @@ import {
 import { Alert, Button, Form, Modal } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import api from "@/utils/api";
+import { useRouter } from "next/navigation";
 
 const ReportForm = () => {
+  const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [savedData, setSavedData] = useState(defaultValues);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -1058,13 +1060,26 @@ const ReportForm = () => {
   };
 
   const sendReport: SubmitHandler<ReportFormValues> = async (data) => {
-    try {
-      await api.post("/reports/", data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      reset();
-    }
+    api
+      .post("/reports/", data)
+      .then((resp) => {
+        reset();
+        router.push(`/reports/${resp.data.id}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        reset();
+      });
+    // try {
+    //   await api.post("/reports/", data);
+    // } catch (err) {
+    //   console.error(err);
+    // } finally {
+    //   router.push(`/reports/${1}`);
+    //   reset();
+    // }
   };
 
   return (
