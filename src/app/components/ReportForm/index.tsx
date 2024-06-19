@@ -1075,12 +1075,12 @@ const ReportForm = () => {
   };
 
   return (
-    <Form onFinish={handleSubmit(sendReport)}>
+    <Form onFinish={handleSubmit(sendReport)} className={styles.form}>
       {Object.entries(formStructure).map(([fieldsetKey, value]) =>
         value.is_dynamic ? (
           <fieldset key={fieldsetKey} className={styles.fieldset}>
             <legend className={styles.fieldset__legend}>{value.legend}</legend>
-            <div>
+            <div className={styles.fieldset__content}>
               {value.instances.map((field, index) => (
                 <fieldset key={field.id} className={styles.fieldset}>
                   <legend className={styles.fieldset__legend}>№ {index + 1}</legend>
@@ -1091,7 +1091,7 @@ const ReportForm = () => {
                         index,
                       );
                     }}
-                    type="primary"
+                    // type="primary"
                     htmlType="button"
                     danger
                     className={styles.deleteButton}
@@ -1153,6 +1153,7 @@ const ReportForm = () => {
             </Button>
           </fieldset>
         ) : (
+          // fixme: тут почему то юзаются классы fieldset__*, хотя это поле не в филдсете
           <Label key={`${fieldsetKey}`} htmlFor={`${fieldsetKey}`} className={styles.fieldset__label}>
             <span className={styles.fieldset__span}>{value.structure[0].field.value}</span>
             <input
@@ -1174,7 +1175,7 @@ const ReportForm = () => {
         ),
       )}
 
-      <Button type="primary" onClick={showModal} className={styles.button} danger>
+      <Button onClick={showModal} className={styles.button} danger>
         Сбросить значения
       </Button>
       <Modal
