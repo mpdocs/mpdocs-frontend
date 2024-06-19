@@ -22,8 +22,10 @@ import {
 import { Alert, Button, Form, Modal } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import api from "@/utils/api";
+import { useRouter } from "next/navigation";
 
 const ReportForm = () => {
+  const router = useRouter();
   const [isClient, setIsClient] = useState(false);
   const [savedData, setSavedData] = useState(defaultValues);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -223,8 +225,8 @@ const ReportForm = () => {
           type: "text",
           field: {
             key: "work_time_coefficient",
-            value: "work_time_coefficient",
-            placeholder: "work_time_coefficient",
+            value: "Коэффициент ставки",
+            placeholder: "1.0",
           },
         },
       ],
@@ -239,8 +241,8 @@ const ReportForm = () => {
           type: "text",
           field: {
             key: "academic_degree",
-            value: "academic_degree",
-            placeholder: "academic_degree квалификации",
+            value: "Учёная степень",
+            placeholder: "К.п.н",
           },
         },
       ],
@@ -255,8 +257,8 @@ const ReportForm = () => {
           type: "text",
           field: {
             key: "position",
-            value: "position",
-            placeholder: "position",
+            value: "Должность",
+            placeholder: "Доцент",
           },
         },
       ],
@@ -1058,13 +1060,18 @@ const ReportForm = () => {
   };
 
   const sendReport: SubmitHandler<ReportFormValues> = async (data) => {
-    try {
-      await api.post("/reports/", data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      reset();
-    }
+    api
+      .post("/reports/", data)
+      .then((resp) => {
+        reset();
+        router.push(`/reports/${resp.data.id}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        reset();
+      });
   };
 
   return (
