@@ -1,11 +1,15 @@
 import React from "react";
 import { Card } from "antd";
-import { Report } from "../ReportsDashboard/types";
-import { format } from "date-fns";
+import { Report } from "../../types";
 import styles from "./index.module.scss";
 interface ReportsListProps {
   sortedReports: Report[];
 }
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  return date.toISOString().replace("T", " ").substring(0, 19);
+};
 
 const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
   return (
@@ -32,10 +36,10 @@ const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
           <div>
             <h3>Timestamps</h3>
             <p>
-              Created At: <span>{format(new Date(report.created_at), "yyyy-MM-dd HH:mm:ss")}</span>
+              Created At: <span>{formatDate(report.created_at)}</span>
             </p>
             <p>
-              Updated At: <span>{format(new Date(report.updated_at), "yyyy-MM-dd HH:mm:ss")}</span>
+              Updated At: <span>{formatDate(report.updated_at)}</span>
             </p>
           </div>
         </Card>
