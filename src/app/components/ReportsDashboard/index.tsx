@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { MockData } from "./types";
 import styles from "./index.module.scss";
 import { ArrowDownOutlined, ArrowUpOutlined, DownOutlined } from "@ant-design/icons";
-import ReportsList from "../ReportsList";
+import ReportsList from "./components/ReportsList";
 
 const items: MenuProps["items"] = [
   {
