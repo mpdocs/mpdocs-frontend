@@ -19,7 +19,7 @@ const items = [
   },
   {
     key: "report_list",
-    label: <Link href="/reports_list">Смотреть</Link>,
+    label: <Link href="/reports-dashboard">Смотреть</Link>,
   },
 ];
 
