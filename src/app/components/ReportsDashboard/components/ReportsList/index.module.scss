@@ -70,3 +70,14 @@ $colors: (
   @extend .highlighting;
   @extend .red;
 }
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  & button {
+    flex-grow: 1;
+  }
+}
