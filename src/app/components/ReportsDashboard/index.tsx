@@ -5,6 +5,7 @@ import { MockData } from "./types";
 import styles from "./index.module.scss";
 import { ArrowDownOutlined, ArrowUpOutlined, DownOutlined } from "@ant-design/icons";
 import ReportsList from "./components/ReportsList";
+import api from "@/utils/api";
 
 const items: MenuProps["items"] = [
   {
@@ -20,9 +21,23 @@ const items: MenuProps["items"] = [
 ];
 
 const ReportsDashboard = () => {
-  const [reports] = useState(MockData);
+  const [reports, setReports] = useState(MockData);
   const [sortedReports, setSortedReports] = useState(reports);
   const [sortLabel, setSortLabel] = useState("Сортировать");
+
+  const getReportsData = async () => {
+    try {
+      const response = await api.get("/reports/");
+      setReports(response.data);
+      setSortedReports(response.data);
+    } catch (error) {
+      console.error("Error fetching reports data:", error);
+    }
+  };
+
+  useEffect(() => {
+    getReportsData();
+  }, []);
 
   useEffect(() => {
     setSortedReports(reports);
