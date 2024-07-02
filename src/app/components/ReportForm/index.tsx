@@ -717,7 +717,7 @@ const ReportForm = () => {
     },
     exhibitions: {
       is_dynamic: true,
-      legend: "3.5 Участие в выставках, в т.ч. с участием студентов",
+      legend: "3.6 Участие в выставках, в т.ч. с участием студентов",
       structure: [
         {
           type: "text",
@@ -780,7 +780,7 @@ const ReportForm = () => {
     },
     contests: {
       is_dynamic: true,
-      legend: "3.6 Перечень заявок, поданных на участие в федеральных, региональных и прочих конкурсах НИР",
+      legend: "3.7 Перечень заявок, поданных на участие в федеральных, региональных и прочих конкурсах НИР",
       structure: [
         {
           type: "text",
@@ -1091,7 +1091,6 @@ const ReportForm = () => {
                         index,
                       );
                     }}
-                    // type="primary"
                     htmlType="button"
                     danger
                     className={styles.deleteButton}
@@ -1107,6 +1106,7 @@ const ReportForm = () => {
                     >
                       <span className={styles.fieldset__span}>{item.field.value}</span>
                       <input
+                        id={`${fieldsetKey}.${index}.${item.field.key}`}
                         type={item.type}
                         {...register(
                           // fixme: type of item.field.key
@@ -1157,6 +1157,7 @@ const ReportForm = () => {
           <Label key={`${fieldsetKey}`} htmlFor={`${fieldsetKey}`} className={styles.fieldset__label}>
             <span className={styles.fieldset__span}>{value.structure[0].field.value}</span>
             <input
+              id={`${fieldsetKey}`}
               type={value.structure[0].type}
               {...register(`${fieldsetKey as StaticInputsKeys}` as const, {
                 required: "Обязательное поле",
