@@ -1,11 +1,11 @@
 "use client";
-import { Button, Dropdown, Input, MenuProps } from "antd";
+import { Button, Dropdown, Input, MenuProps, Spin } from "antd";
 import React, { useEffect, useState } from "react";
-import { MockData } from "./types";
 import styles from "./index.module.scss";
 import { ArrowDownOutlined, ArrowUpOutlined, DownOutlined } from "@ant-design/icons";
 import ReportsList from "./components/ReportsList";
 import api from "@/utils/api";
+import { Report } from "@/app/components/Reports/types";
 
 const items: MenuProps["items"] = [
   {
@@ -20,8 +20,8 @@ const items: MenuProps["items"] = [
   },
 ];
 
-const ReportsDashboard = () => {
-  const [reports, setReports] = useState(MockData);
+const Reports = () => {
+  const [reports, setReports] = useState<Report[]>([]);
   const [sortedReports, setSortedReports] = useState(reports);
   const [sortLabel, setSortLabel] = useState("Сортировать");
 
@@ -31,7 +31,7 @@ const ReportsDashboard = () => {
       setReports(response.data);
       setSortedReports(response.data);
     } catch (error) {
-      console.error("Error fetching reports data:", error);
+      console.error(error);
     }
   };
 
@@ -67,6 +67,10 @@ const ReportsDashboard = () => {
     onClick: handleMenuClick,
   };
 
+  if (reports.length === 0) {
+    return <Spin className="root"></Spin>;
+  }
+
   return (
     <>
       <div className={styles.toolbar}>
@@ -89,4 +93,4 @@ const ReportsDashboard = () => {
   );
 };
 
-export default ReportsDashboard;
+export default Reports;
