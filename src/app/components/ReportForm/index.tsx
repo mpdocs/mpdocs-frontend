@@ -1,44 +1,25 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import {
-  FieldArrayWithId,
-  SubmitHandler,
-  useFieldArray,
-  useForm,
-  FieldError,
-  UseFieldArrayReturn,
-} from "react-hook-form";
+import { FieldArrayWithId, useFieldArray, useForm, FieldError, UseFieldArrayReturn } from "react-hook-form";
 import Label from "@/app/components/Label";
 import styles from "./index.module.scss";
 import {
   defaultValues,
   FieldsetsType,
   FieldsetsTypeKeys,
+  ReportFormProps,
   ReportFormValues,
   ReportFormValuesArrayKeys,
   StaticInputsKeys,
 } from "@/app/components/ReportForm/types";
 import { Alert, Button, Form, Modal } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import api from "@/utils/api";
-import { useRouter } from "next/navigation";
 
-const ReportForm = () => {
-  const router = useRouter();
+const ReportForm: React.FC<ReportFormProps> = ({ initialData, onSubmit, setResetForm }) => {
   const [isClient, setIsClient] = useState(false);
   const [savedData, setSavedData] = useState(defaultValues);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const dataFromStorage = localStorage.getItem("reportFormData");
-      if (dataFromStorage) {
-        setSavedData(JSON.parse(dataFromStorage));
-      }
-      setIsClient(true);
-    }
-  }, []);
 
   const {
     register,
@@ -51,6 +32,35 @@ const ReportForm = () => {
     defaultValues: savedData,
     mode: "onBlur",
   });
+
+  const watchAllFields = watch();
+
+  useEffect(() => {
+    setResetForm(() => reset);
+  }, [reset, setResetForm]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const dataFromStorage = localStorage.getItem("reportFormData");
+      if (dataFromStorage) {
+        setSavedData(JSON.parse(dataFromStorage));
+      }
+      if (initialData) {
+        setSavedData(initialData);
+      }
+      setIsClient(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem("reportFormData", JSON.stringify(watchAllFields));
+    }
+  }, [watchAllFields, isClient]);
+
+  useEffect(() => {
+    reset(savedData);
+  }, [reset, savedData]);
 
   const qualificationImprovement = useFieldArray({
     control,
@@ -125,18 +135,6 @@ const ReportForm = () => {
     name: "educational_participations",
   });
 
-  const watchAllFields = watch();
-
-  useEffect(() => {
-    if (isClient) {
-      localStorage.setItem("reportFormData", JSON.stringify(watchAllFields));
-    }
-  }, [watchAllFields, isClient]);
-
-  useEffect(() => {
-    reset(savedData);
-  }, [reset, savedData]);
-
   const controlledFields = (
     fields: Array<FieldArrayWithId<ReportFormValues, keyof FieldsetsType, "id">>,
     watchFields: FieldsetsType[],
@@ -199,16 +197,12 @@ const ReportForm = () => {
     fieldsArray.remove(index);
   };
 
-  const resetFormValues = () => {
-    reset(defaultValues);
-  };
-
   const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleOk = () => {
-    resetFormValues();
+    reset();
     setIsModalVisible(false);
   };
 
@@ -1059,23 +1053,8 @@ const ReportForm = () => {
     },
   };
 
-  const sendReport: SubmitHandler<ReportFormValues> = async (data) => {
-    api
-      .post("/reports/", data)
-      .then((resp) => {
-        reset();
-        router.push(`/reports/${resp.data.id}`);
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => {
-        reset();
-      });
-  };
-
   return (
-    <Form onFinish={handleSubmit(sendReport)}>
+    <Form onFinish={handleSubmit(onSubmit)}>
       {Object.entries(formStructure).map(([fieldsetKey, value]) =>
         value.is_dynamic ? (
           <fieldset key={fieldsetKey} className={styles.fieldset}>
