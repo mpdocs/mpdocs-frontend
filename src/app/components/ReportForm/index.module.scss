@@ -99,7 +99,8 @@
     justify-content: center;
     align-items: center;
     margin-left: auto;
-    width: 8.75rem;
+    gap: 0.5rem;
+    width: 8rem;
     font-size: 0.7rem;
 }
 
@@ -112,6 +113,7 @@
     .fieldset {
         padding: 0.7rem;
         margin: 0 0.35rem 0.7rem;
+        max-width: 90%;
 
         &:not(.unused) &__legend {
             font-size: 0.6rem;
@@ -124,17 +126,23 @@
 
     .button,
     .deleteButton {
-        width: 5rem;
         height: 1.4rem;
         font-size: 0.5rem;
+        border: none;
+        box-shadow: none;
+    }
 
-        .deleteSvg {
-            display: none;
-        }
+    .deleteButton {
+        width: 5rem;
+        justify-content: end;
     }
 
     .button {
         width: 9rem;
+    }
+
+    .deleteText {
+        display: none;
     }
 }
 
