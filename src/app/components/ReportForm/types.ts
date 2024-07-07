@@ -15,6 +15,12 @@ import {
   ReportMutableFields,
 } from "@/utils/api/types";
 
+export interface ReportFormProps {
+  initialData: ReportFormValues;
+  onSubmit: (data: ReportFormValues) => void;
+  setResetForm: (resetFn: () => void) => void;
+}
+
 export interface ReportFormValues extends ReportMutableFields {}
 
 export type ReportFormValuesArrayKeys =
