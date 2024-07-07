@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Card } from "antd";
 import { Report } from "../../types";
 import styles from "./index.module.scss";
+import { useRouter } from "next/navigation";
 interface ReportsListProps {
   sortedReports: Report[];
 }
@@ -12,6 +13,12 @@ const formatDate = (dateString: string) => {
 };
 
 const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
+  const router = useRouter();
+
+  const handleEdit = (reportId: number): void => {
+    router.push(`/reports-list/${reportId}`);
+  };
+
   return (
     <div className={styles.wrapper}>
       {sortedReports.map((report, index) => (
@@ -36,7 +43,13 @@ const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
           </p>
           <div className={styles.buttons}>
             <Button type="primary">Посмотреть</Button>
-            <Button type="primary" danger>
+            <Button
+              onClick={() => {
+                handleEdit(report.id);
+              }}
+              type="primary"
+              danger
+            >
               Редакитировать
             </Button>
           </div>
