@@ -44,13 +44,18 @@ const Reports = () => {
   }, [reports]);
 
   const handleMenuClick: MenuProps["onClick"] = (e) => {
-    const sorted = [...reports].sort((a, b) => new Date(a.updated_at).getTime() - new Date(b.created_at).getTime());
-    setSortLabel("От старых к новым");
+    let sorted: Report[] = [];
+
+    if (e.key === "1") {
+      sorted = [...reports].sort((a, b) => new Date(a.updated_at).getTime() - new Date(b.updated_at).getTime());
+      setSortLabel("От старых к новым");
+    }
 
     if (e.key === "2") {
-      sorted.reverse();
+      sorted = [...reports].sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime());
       setSortLabel("От новых к старым");
     }
+
     setSortedReports(sorted);
   };
 
