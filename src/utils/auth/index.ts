@@ -18,6 +18,7 @@ const initialState: AuthState = {
     email: "",
     first_name: "",
     last_name: "",
+    is_staff: false,
   },
 };
 
@@ -28,6 +29,7 @@ const emptyUser: UserDetail = {
   email: "",
   first_name: "",
   last_name: "",
+  is_staff: false,
 };
 
 export const authSlice = createSlice({
