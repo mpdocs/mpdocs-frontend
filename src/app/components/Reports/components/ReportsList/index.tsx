@@ -3,6 +3,7 @@ import { Button, Card } from "antd";
 import { Report } from "../../types";
 import styles from "./index.module.scss";
 import { useRouter } from "next/navigation";
+
 interface ReportsListProps {
   sortedReports: Report[];
 }
@@ -42,7 +43,11 @@ const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
             Время обновления: <span>{formatDate(report.updated_at)}</span>
           </p>
           <div className={styles.buttons}>
-            <Button type="primary">Посмотреть</Button>
+            <Button type="primary">
+              <a href={`${process.env.NEXT_PUBLIC_API_URL}/reports/${report.id}/generate`} target="_blank">
+                Скачать
+              </a>
+            </Button>
             <Button
               onClick={() => {
                 handleEdit(report.id);
