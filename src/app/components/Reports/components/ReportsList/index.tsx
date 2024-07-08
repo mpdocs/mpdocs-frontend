@@ -50,7 +50,7 @@ const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
               type="primary"
               danger
             >
-              Редакитировать
+              Редактировать
             </Button>
           </div>
         </Card>

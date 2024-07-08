@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import isAuth from "@/app/auth/isAuth";
 import Reports from "@/app/components/Reports";
