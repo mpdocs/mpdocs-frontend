@@ -17,7 +17,7 @@ const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
   const router = useRouter();
 
   const handleEdit = (reportId: number): void => {
-    router.push(`/reports-list/${reportId}`);
+    router.push(`/reports/${reportId}/edit`);
   };
 
   return (
