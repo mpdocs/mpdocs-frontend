@@ -45,7 +45,7 @@ const ReportsList: React.FC<ReportsListProps> = ({ sortedReports }) => {
           <div className={styles.buttons}>
             <Button type="primary">
               <a href={`${process.env.NEXT_PUBLIC_API_URL}/reports/${report.id}/generate`} target="_blank">
-                Скачать
+                Скачать docx
               </a>
             </Button>
             <Button
