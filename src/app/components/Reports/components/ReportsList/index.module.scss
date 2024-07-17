@@ -1,0 +1,83 @@
+@use 'sass:map';
+
+$border-color: #e0e2e6;
+$border-conf: 1px solid $border-color;
+
+$colors: (
+        green: #00a330,
+        green-bg: #00d51e21,
+        red: #c90000,
+        red-bg: #bd000014,
+);
+
+@function get($color-name) {
+  $color: map.get($colors, $color-name);
+  @if not $color {
+    @error "No color with name \"#{$color-name}\" defined!";
+  }
+  @return $color;
+}
+
+.highlighting {
+  padding: 4px 10px;
+  border-radius: 12px;
+
+  &.green {
+    background: get(green-bg);
+    color: get(green);
+  }
+
+  &.red {
+    background: get(red-bg);
+    color: get(red);
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 20px;
+}
+
+.card {
+  border: $border-conf;
+  width: calc(100% - 20px);
+
+  @media (max-width: 768px) {
+    flex-grow: 1;
+  }
+
+  @media (min-width: 768px) {
+    width: calc((100% - 30px) / 2);
+  }
+
+  @media (min-width: 1300px) {
+    width: calc((100% - 60px) / 3);
+  }
+
+  @media (min-width: 1920px) {
+    width: calc((100% - 90px) / 4);
+  }
+}
+
+.statusTrue {
+  @extend .highlighting;
+  @extend .green;
+}
+
+.statusFalse {
+  @extend .highlighting;
+  @extend .red;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+
+  & button {
+    flex-grow: 1;
+  }
+}

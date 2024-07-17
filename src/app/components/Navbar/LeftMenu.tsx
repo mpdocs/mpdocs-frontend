@@ -20,11 +20,11 @@ const LeftMenu: React.FC<IMenu> = ({ current, menu }) => {
         },
         {
           key: "create_report",
-          label: <Link href="/reports">Заполнить</Link>,
+          label: <Link href="/reports/create">Заполнить</Link>,
         },
         {
           key: "report_list",
-          label: <Link href="/reports_list">Смотреть</Link>,
+          label: <Link href="/reports">Смотреть</Link>,
         },
       ]
     : [
@@ -38,11 +38,11 @@ const LeftMenu: React.FC<IMenu> = ({ current, menu }) => {
         },
         {
           key: "create_report",
-          label: <Link href="/reports">Заполнить</Link>,
+          label: <Link href="/reports/create">Заполнить</Link>,
         },
         {
           key: "report_list",
-          label: <Link href="/reports_list">Смотреть</Link>,
+          label: <Link href="/reports">Смотреть</Link>,
         },
         {
           key: "download_stats",
