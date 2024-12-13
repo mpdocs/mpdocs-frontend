@@ -1074,7 +1074,7 @@ const ReportForm: React.FC<ReportFormProps> = ({ initialData, onSubmit, setReset
                     danger
                     className={styles.deleteButton}
                   >
-                    Удалить
+                    <p className={styles.deleteText}>Удалить</p>
                     <MinusCircleOutlined style={{ fontSize: "22px" }} className={styles.deleteSvg} />
                   </Button>
                   {value.structure.map((item) => (
